@@ -1,12 +1,10 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import {
   Package,
   PackageSearch,
   MessageCircle,
-  ArrowRight,
   CheckCircle2,
   Clock,
   Truck,

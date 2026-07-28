@@ -4,7 +4,6 @@ import {
   Phone,
   MapPin,
   Clock,
-  Mail,
   ArrowRight,
   ExternalLink,
 } from "lucide-react";
@@ -85,7 +84,7 @@ export default function ContactPage() {
           </Reveal>
           <Reveal variant="slide" delay={0.05}>
             <h1 className="mt-4 font-heading text-[clamp(2.2rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.04em]">
-              We're in Karachi.
+              We&apos;re in Karachi.
               <br />
               <span className="text-primary-glow">We answer fast.</span>
             </h1>

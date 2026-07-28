@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { ProductsGrid } from "@/features/products/products-grid";
@@ -67,7 +66,7 @@ export default async function ProductsPage() {
           </Reveal>
           <Reveal variant="blur" delay={0.09}>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-white/45">
-              Emergency, solar, everyday — Pakistan's most reliable lighting
+              Emergency, solar, everyday — Pakistan&apos;s most reliable lighting
               range, for home and work.
             </p>
           </Reveal>

@@ -14,7 +14,7 @@ import {
 import { productRepository } from "@/features/products/repository";
 import type { Product } from "@/features/products/types";
 import { formatPKR } from "@/lib/utils";
-import { productWhatsAppMessage, whatsappUrl } from "@/lib/brand";
+import { whatsappUrl } from "@/lib/brand";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, ArrowRight } from "lucide-react";
 

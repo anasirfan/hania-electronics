@@ -168,7 +168,7 @@ export default function AboutPage() {
                 <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-white/50">
                   <p>
                     HANIA Electronics operates from Falak Corporate City in
-                    Boulton Market, Karachi — one of the country's largest
+                    Boulton Market, Karachi — one of the country&apos;s largest
                     commercial hubs. From here, we supply both retail customers
                     and wholesale dealers across every major city in Pakistan.
                   </p>
@@ -180,7 +180,7 @@ export default function AboutPage() {
                   </p>
                   <p>
                     Our model is simple: buy direct, support your customer,
-                    stand behind the product. That's it.
+                    stand behind the product. That&apos;s it.
                   </p>
                 </div>
               </Reveal>

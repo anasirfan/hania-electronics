@@ -9,6 +9,7 @@ export function CinematicImage({
   grade = "cool",
   vignette = true,
   kenBurns = false,
+  alt,
   ...props
 }: Omit<ImageProps, "className"> & {
   containerClassName?: string;
@@ -22,6 +23,7 @@ export function CinematicImage({
     // it is not forced here to avoid colliding with a hardcoded "relative".
     <div className={cn("overflow-hidden", containerClassName)}>
       <Image
+        alt={alt}
         {...props}
         className={cn(
           "cinematic-grade object-cover",
