@@ -36,7 +36,7 @@ export function ProductCard({
     <>
       <article
         className={cn(
-          "group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-border bg-card shadow-[0_4px_32px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-foreground/15 hover:shadow-[0_12px_48px_-12px_rgba(34,211,238,0.25)]",
+          "group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-border bg-card shadow-[0_4px_32px_-8px_rgba(0,0,0,0.12)] transition-all duration-500 hover:-translate-y-1 hover:border-foreground/15 hover:shadow-[0_12px_48px_-12px_rgba(34,211,238,0.12)]",
           className,
         )}
       >

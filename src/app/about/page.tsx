@@ -102,7 +102,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
         <Container className="relative flex min-h-[75vh] flex-col justify-end pb-20 pt-32">
           <Reveal variant="fade">
-            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.32em] text-white/60">
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/35">
               Our story
             </p>
           </Reveal>
@@ -305,7 +305,7 @@ export default function AboutPage() {
           <div className="mt-16 border-t border-white/10">
             {VALUES.map((v, i) => (
               <Reveal key={v.num} variant="slide" delay={i * 0.07}>
-                <div className="flex flex-col gap-3 border-b border-white/8 py-8 sm:flex-row sm:items-baseline sm:gap-12">
+                <div className="flex flex-col gap-3 border-b border-white/10 py-8 sm:flex-row sm:items-baseline sm:gap-12">
                   <span className="shrink-0 font-heading text-[11px] tabular-nums tracking-[0.2em] text-white/20 sm:w-12">
                     {v.num}
                   </span>

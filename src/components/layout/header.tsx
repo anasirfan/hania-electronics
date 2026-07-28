@@ -65,7 +65,7 @@ export function Header() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-white/95 shadow-sm backdrop-blur-xl border-b border-black/8 text-foreground"
+            ? "bg-white/95 shadow-sm backdrop-blur-xl border-b border-border text-foreground"
             : megaOpen
               ? "bg-[#0d1526]/90 backdrop-blur-xl text-white"
               : "bg-transparent text-white",

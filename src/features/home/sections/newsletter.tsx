@@ -42,7 +42,7 @@ export function NewsletterSection() {
       />
       <Container className="relative max-w-xl text-center">
         <Reveal variant="fade">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/45">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/30">
             Newsletter
           </p>
         </Reveal>
@@ -72,7 +72,7 @@ export function NewsletterSection() {
             <button
               type="submit"
               disabled={mutation.isPending}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-[#131f33] transition hover:bg-white/90 disabled:opacity-60"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-dark transition hover:bg-white/90 disabled:opacity-60"
             >
               {mutation.isPending ? "Joining…" : "Subscribe"}
               {!mutation.isPending ? <ArrowRight className="h-4 w-4" /> : null}

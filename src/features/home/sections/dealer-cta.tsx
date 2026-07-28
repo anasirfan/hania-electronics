@@ -35,7 +35,7 @@ export function DealerCtaSection() {
         {/* Text panel — fills right half */}
         <div className="flex flex-col justify-center bg-[#080d18] px-8 py-20 text-white lg:w-1/2 lg:px-16 xl:px-24">
           <Reveal variant="fade">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-300/80">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-primary-glow/70">
               Wholesale Partners
             </p>
           </Reveal>
@@ -58,7 +58,7 @@ export function DealerCtaSection() {
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-semibold text-[#131f33] transition hover:bg-white/90"
+                className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-white px-8 text-[15px] font-semibold text-dark transition hover:bg-white/90"
               >
                 <Handshake className="h-4 w-4" />
                 Apply Now

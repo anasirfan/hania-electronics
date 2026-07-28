@@ -44,7 +44,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="mb-7 text-[11px] font-medium uppercase tracking-[0.32em] text-white/70 sm:text-xs"
+            className="mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/50 sm:text-xs"
           >
             Hania Electronics
           </motion.p>
@@ -80,7 +80,7 @@ export function HeroSection() {
           >
             <a
               href="#bestsellers"
-              className="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-[#131f33] transition hover:bg-white/90"
+              className="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-7 text-[15px] font-semibold text-dark transition hover:bg-white/90"
             >
               Shop the collection
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

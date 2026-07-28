@@ -21,6 +21,8 @@
   --ring: #22d3ee;
   --dark: #0d1526;
   --dark-elevated: #16223a;
+  --dark-mid: #080d18;
+  --dark-deep: #05070c;
   --radius: 0.75rem;
   --radius-card: 1.5rem;
   --popover: #ffffff;
@@ -71,6 +73,8 @@
   --color-ring: var(--ring);
   --color-dark: var(--dark);
   --color-dark-elevated: var(--dark-elevated);
+  --color-dark-mid: var(--dark-mid);
+  --color-dark-deep: var(--dark-deep);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --font-sans: var(--font-jakarta);
