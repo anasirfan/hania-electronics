@@ -585,7 +585,7 @@ export default async function ProductPage({
               </p>
             </Reveal>
             <Reveal variant="mask" delay={0.05}>
-              <h2 className="mt-4 font-heading text-[clamp(1.6rem,3vw,2.5rem)] font-semibold leading-tight tracking-tight">
+              <h2 className="mt-4 font-heading text-[clamp(1.6rem,3vw,2.5rem)] font-semibold leading-tight tracking-tight text-white">
                 {product.name}
               </h2>
             </Reveal>

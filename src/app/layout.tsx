@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import { AppProviders } from "@/components/providers/app-providers";
 import { SplashScreen } from "@/components/atmosphere/splash-screen";
 import { FloatingLights } from "@/components/atmosphere/floating-lights";
@@ -90,6 +91,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <AppProviders>
+          <NextTopLoader
+            color="#22d3ee"
+            height={3}
+            showSpinner={false}
+            shadow="0 0 10px #22d3ee, 0 0 5px #22d3ee"
+          />
           <SplashScreen />
           <FloatingLights />
           <Spotlight />
