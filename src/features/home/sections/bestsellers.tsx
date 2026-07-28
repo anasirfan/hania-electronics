@@ -26,17 +26,12 @@ export async function BestSellersSection() {
         </div>
 
         {hero ? (
-          <div className="grid gap-6 lg:grid-cols-5">
-            <Reveal variant="clip" className="lg:col-span-3">
-              <ProductCard product={hero} large className="h-full" />
-            </Reveal>
-            <div className="grid gap-6 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-1">
-              {rest.map((product, i) => (
-                <Reveal key={product.id} variant="slide" delay={0.08 + i * 0.06}>
-                  <ProductCard product={product} />
-                </Reveal>
-              ))}
-            </div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[hero, ...rest].map((product, i) => (
+              <Reveal key={product.id} variant="scale" delay={i * 0.06}>
+                <ProductCard product={product} className="h-full" />
+              </Reveal>
+            ))}
           </div>
         ) : null}
       </Container>

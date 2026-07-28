@@ -79,6 +79,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${jakarta.variable} ${outfit.variable} antialiased`}>
+        {/* Runs synchronously before React hydration — blocks flash of home content */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(!sessionStorage.getItem('hania-splash-seen'))document.documentElement.dataset.splash='1'}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

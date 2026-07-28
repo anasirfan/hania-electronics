@@ -28,7 +28,9 @@ export function ProductVisual({
     xl: "min-h-72 md:min-h-96",
   };
 
-  const contain = src ? CONTAIN_SOURCES.has(src) : false;
+  const contain = src
+    ? CONTAIN_SOURCES.has(src) || src.startsWith("/products/catalog/")
+    : false;
 
   return (
     <div
@@ -48,7 +50,7 @@ export function ProductVisual({
           priority={priority}
           className={cn(
             "transition-transform duration-700 group-hover:scale-[1.03]",
-            contain ? "object-contain p-6 md:p-8" : "object-cover",
+            contain ? "object-contain p-2" : "object-cover",
           )}
           sizes="(max-width:768px) 90vw, 420px"
         />

@@ -3,10 +3,8 @@
 import * as React from "react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { CinematicImage } from "@/components/media/cinematic-image";
 import { ProductCard } from "@/features/products/product-card";
 import { products } from "@/data/catalog/products";
-import { media } from "@/data/catalog/media";
 import { cn } from "@/lib/utils";
 import type { Purpose } from "@/features/products/types";
 
@@ -14,36 +12,31 @@ const environments: {
   id: Purpose;
   name: string;
   description: string;
-  image: string | null;
-  grade: "cool" | "warm";
+  accent: string;
 }[] = [
   {
     id: "home",
     name: "Home",
     description: "Everyday lighting that feels like part of the room.",
-    image: media.scenes.home,
-    grade: "warm",
+    accent: "rgba(245,197,122,0.18)",
   },
   {
     id: "camping",
     name: "Camping",
     description: "Portable power for nights far from the grid.",
-    image: media.scenes.camping,
-    grade: "cool",
+    accent: "rgba(34,211,238,0.15)",
   },
   {
     id: "office",
     name: "Office",
     description: "Clean, reliable light for workstations and shops.",
-    image: null,
-    grade: "cool",
+    accent: "rgba(99,179,237,0.14)",
   },
   {
     id: "emergency",
     name: "Emergency",
     description: "Backup light the moment the grid goes down.",
-    image: media.scenes.emergency,
-    grade: "cool",
+    accent: "rgba(252,129,74,0.15)",
   },
 ];
 
@@ -88,25 +81,15 @@ export function ShopByPurposeSection() {
           </div>
         </Reveal>
 
-        <div className="relative min-h-[460px] overflow-hidden rounded-[28px] bg-[#131f33] md:min-h-[520px]">
-          {active.image ? (
-            <CinematicImage
-              key={active.id}
-              src={active.image}
-              alt={active.description}
-              fill
-              grade={active.grade}
-              kenBurns
-              containerClassName="absolute inset-0"
-              sizes="100vw"
-            />
-          ) : (
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_75%_15%,rgba(34,211,238,0.18),transparent_55%),radial-gradient(ellipse_70%_60%_at_15%_100%,rgba(245,197,122,0.14),transparent_50%),linear-gradient(160deg,#070b16_0%,#131f33_55%,#070b16_100%)]"
-            />
-          )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30" />
+        <div className="relative min-h-[460px] overflow-hidden rounded-[28px] bg-[#0d1526] md:min-h-[520px]">
+          <div
+            aria-hidden
+            key={active.id}
+            className="absolute inset-0 transition-all duration-700"
+            style={{
+              background: `radial-gradient(ellipse 80% 60% at 80% 0%, ${active.accent}, transparent 55%), radial-gradient(ellipse 60% 50% at 10% 100%, ${active.accent}, transparent 50%), linear-gradient(160deg,#060a14 0%,#0d1526 55%,#060a14 100%)`,
+            }}
+          />
 
           <div className="relative z-10 flex min-h-[460px] flex-col justify-between p-6 md:min-h-[520px] md:p-10">
             <div className="max-w-md">
