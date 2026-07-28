@@ -23,6 +23,10 @@ export function SplashScreen() {
     } catch {
       seen = false;
     }
+
+    // Always remove the CSS blocking overlay — component is now in control
+    delete (document.documentElement.dataset as Record<string, string>).splash;
+
     if (seen) return;
 
     setVisible(true);

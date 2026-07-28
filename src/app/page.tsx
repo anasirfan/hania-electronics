@@ -6,7 +6,6 @@ import { BestSellersSection } from "@/features/home/sections/bestsellers";
 import { WhyHaniaSection } from "@/features/home/sections/why-hania";
 import { ShopByPurposeSection } from "@/features/home/sections/shop-by-purpose";
 import { DealerCtaSection } from "@/features/home/sections/dealer-cta";
-import { FeaturedProductsSection } from "@/features/home/sections/featured-products";
 import { LifestyleBannerSection } from "@/features/home/sections/lifestyle-banner";
 import { MidBannerSection } from "@/features/home/sections/mid-banner";
 import { TestimonialsSection } from "@/features/home/sections/testimonials";
@@ -25,7 +24,6 @@ export default function HomePage() {
       <WhyHaniaSection />
       <ShopByPurposeSection />
       <DealerCtaSection />
-      <FeaturedProductsSection />
       <LifestyleBannerSection />
       <TestimonialsSection />
       <FaqSection />

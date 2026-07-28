@@ -91,6 +91,16 @@
     scroll-behavior: auto;
   }
 
+  /* Blocks flash of home content before splash screen mounts */
+  html[data-splash]::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 199;
+    background: #f6f3ed;
+    pointer-events: none;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-jakarta), system-ui, sans-serif;

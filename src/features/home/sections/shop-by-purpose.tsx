@@ -91,7 +91,7 @@ export function ShopByPurposeSection() {
             }}
           />
 
-          <div className="relative z-10 flex min-h-[460px] flex-col justify-between p-6 md:min-h-[520px] md:p-10">
+          <div className="relative z-10 flex min-h-[460px] flex-col p-6 md:min-h-[520px] md:p-10">
             <div className="max-w-md">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary-glow">
                 {active.name}
@@ -102,7 +102,12 @@ export function ShopByPurposeSection() {
             </div>
 
             {filtered.length > 0 ? (
-              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div
+                className="mt-8 grid gap-4"
+                style={{
+                  gridTemplateColumns: `repeat(${filtered.length}, 1fr)`,
+                }}
+              >
                 {filtered.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
