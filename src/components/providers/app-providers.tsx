@@ -6,6 +6,8 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ProductStoreProvider } from "@/features/products/store";
+import { CartProvider } from "@/features/cart/store";
+import { WishlistProvider } from "@/features/wishlist/store";
 import { LenisProvider } from "@/components/motion/lenis-provider";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
@@ -22,12 +24,16 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
       <QueryClientProvider client={client}>
         <ProductStoreProvider>
-          <TooltipProvider delayDuration={200}>
-            <LenisProvider>
-              {children}
-              <Toaster richColors position="top-center" />
-            </LenisProvider>
-          </TooltipProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <TooltipProvider delayDuration={200}>
+                <LenisProvider>
+                  {children}
+                  <Toaster richColors position="top-center" />
+                </LenisProvider>
+              </TooltipProvider>
+            </WishlistProvider>
+          </CartProvider>
         </ProductStoreProvider>
       </QueryClientProvider>
     </ThemeProvider>

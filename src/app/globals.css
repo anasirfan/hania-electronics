@@ -1,36 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f3ed;
-  --foreground: #110f0b;
-  --muted: #78695a;
-  --muted-foreground: #78695a;
+  --background: #fafbfd;
+  --foreground: #0b1220;
+  --muted: #64748b;
+  --muted-foreground: #64748b;
   --card: #ffffff;
-  --card-foreground: #110f0b;
+  --card-foreground: #0b1220;
   --primary: #0b6bcb;
   --primary-foreground: #ffffff;
   --primary-glow: #22d3ee;
   --warm-glow: #f5c57a;
   --secondary: #0e7490;
   --secondary-foreground: #ffffff;
-  --accent: #ede8df;
-  --accent-foreground: #110f0b;
+  --accent: #eef2f7;
+  --accent-foreground: #0b1220;
   --destructive: #dc2626;
-  --border: rgba(17, 15, 11, 0.11);
-  --input: rgba(17, 15, 11, 0.13);
-  --ring: #22d3ee;
-  --dark: #0d1526;
+  --border: rgba(11, 18, 32, 0.1);
+  --input: rgba(11, 18, 32, 0.12);
+  --ring: #0b6bcb;
+  --dark: #0b1220;
   --dark-elevated: #16223a;
   --dark-mid: #080d18;
-  --dark-deep: #05070c;
+  --dark-deep: #050a1f;
   --radius: 0.75rem;
   --radius-card: 1.5rem;
   --popover: #ffffff;
-  --popover-foreground: #110f0b;
-  --body-bg-image:
-    radial-gradient(ellipse 80% 55% at 12% -8%, rgba(245, 197, 122, 0.16), transparent 52%),
-    radial-gradient(ellipse 60% 45% at 88% 5%, rgba(34, 211, 238, 0.07), transparent 48%),
-    radial-gradient(ellipse 55% 35% at 50% 108%, rgba(11, 107, 203, 0.07), transparent 48%);
+  --popover-foreground: #0b1220;
+  --body-bg-image: none;
 }
 
 .dark {
@@ -261,7 +258,7 @@
   }
 
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    animation: marquee 28s linear infinite;
   }
 
   .animate-light-sweep::after {

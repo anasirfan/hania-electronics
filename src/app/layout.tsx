@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { AppProviders } from "@/components/providers/app-providers";
-import { SplashScreen } from "@/components/atmosphere/splash-screen";
-import { FloatingLights } from "@/components/atmosphere/floating-lights";
-import { Spotlight } from "@/components/atmosphere/spotlight";
-import { Noise } from "@/components/atmosphere/noise";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { StorefrontShell } from "@/components/layout/storefront-shell";
 import { BRAND } from "@/lib/brand";
 import "./globals.css";
 
@@ -30,13 +25,17 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND.name}`,
   },
   description:
-    "Premium lighting solutions for every Pakistani home — emergency lights, solar lights, professional torches, and more. Wholesale & retail with Pakistan-wide delivery.",
+    "Shop premium emergency lights, solar lights, metal lights, and flash lights. Cash on delivery across Pakistan.",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png" }],
+  },
   keywords: [
     "Hania Electronics",
     "emergency lights Pakistan",
     "solar lights Karachi",
     "torch lights wholesale",
-    "head lamps",
+    "metal lights",
     "Memon Brand",
   ],
   openGraph: {
@@ -80,30 +79,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${jakarta.variable} ${outfit.variable} antialiased`}>
-        {/* Runs synchronously before React hydration — blocks flash of home content */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(!sessionStorage.getItem('hania-splash-seen'))document.documentElement.dataset.splash='1'}catch(e){}`,
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <AppProviders>
           <NextTopLoader
-            color="#22d3ee"
+            color="#0B6BCB"
             height={3}
             showSpinner={false}
-            shadow="0 0 10px #22d3ee, 0 0 5px #22d3ee"
           />
-          <SplashScreen />
-          <FloatingLights />
-          <Spotlight />
-          <Noise />
-          <Header />
-          <main className="relative z-[3]">{children}</main>
-          <Footer />
+          <StorefrontShell>{children}</StorefrontShell>
         </AppProviders>
       </body>
     </html>

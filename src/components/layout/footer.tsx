@@ -10,24 +10,24 @@ const columns = [
     title: "Company",
     links: [
       { label: "About Us", href: "/about" },
-      { label: "Why Hania", href: "#why" },
-      { label: "Trusted Across Pakistan", href: "#trusted" },
+      { label: "Contact", href: "/contact" },
+      { label: "FAQ", href: "/faq" },
     ],
   },
   {
-    title: "Products",
+    title: "Shop",
     links: [
-      { label: "All Products", href: "/products" },
-      { label: "Best Sellers", href: "#bestsellers" },
-      { label: "Shop by Purpose", href: "#purpose" },
-      { label: "Featured", href: "#featured" },
+      { label: "All Products", href: "/shop" },
+      { label: "Metal Lights", href: "/shop/metal-lights" },
+      { label: "Flash Lights", href: "/shop/flash-lights" },
+      { label: "Solar Lights", href: "/shop/solar-lights" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "FAQ", href: "/faq" },
       { label: "Track Order", href: "/track-order" },
+      { label: "Wishlist", href: "/wishlist" },
       { label: "WhatsApp Help", href: whatsappUrl() },
     ],
   },
@@ -35,130 +35,97 @@ const columns = [
     title: "Dealer",
     links: [
       { label: "Become a Dealer", href: "/become-a-dealer" },
-      { label: "Wholesale Inquiry", href: whatsappUrl("I want wholesale rates.") },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Contact Us", href: "/contact" },
+      {
+        label: "Wholesale Inquiry",
+        href: whatsappUrl("I want wholesale rates."),
+      },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-dark text-white">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.18),transparent_45%),radial-gradient(ellipse_at_bottom_left,rgba(11,107,203,0.2),transparent_40%)]"
-      />
-      <Container className="relative py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {columns.map((col) => (
-              <div key={col.title}>
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-glow">
-                  {col.title}
-                </p>
-                <ul className="space-y-3">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-white/70 transition hover:text-white"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary-glow">
-                Contact
-              </p>
-              <ul className="space-y-3 text-sm text-white/70">
-                {BRAND.contacts.map((c) => (
-                  <li key={c.phone}>
-                    <a
-                      href={telUrl(c.tel)}
-                      className="transition hover:text-white"
-                    >
-                      {c.phone} — {c.name}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    href={telUrl(BRAND.phones.landline)}
-                    className="transition hover:text-white"
-                  >
-                    {BRAND.phones.landlineDisplay}
-                  </a>
-                </li>
-                <li className="flex gap-2 pt-1">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary-glow" />
-                  <span>{BRAND.address}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-[28px] border border-white/10 bg-white/5 p-8 backdrop-blur-md lg:min-h-[320px]">
-            <div>
-              <div className="relative mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-[0_0_40px_-5px_rgba(34,211,238,0.6)]">
+    <footer className="relative z-[3] border-t border-border bg-[#050A1F] text-white">
+      <Container className="py-14 md:py-16">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <span className="relative h-10 w-10 overflow-hidden rounded-xl bg-white">
                 <Image
                   src="/brand/logo-mark-transparent.webp"
-                  alt="Hania Electronics"
+                  alt=""
                   fill
-                  className="object-contain p-3"
+                  className="object-contain p-1.5"
                 />
-              </div>
-              <p className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-                {BRAND.name}
+              </span>
+              <span className="font-heading text-lg font-semibold">
+                HANIA Electronics
+              </span>
+            </Link>
+            <p className="mt-4 max-w-sm text-sm text-white/65">
+              Premium lighting for Pakistani homes and businesses — metal,
+              flash, and solar collections with cash on delivery.
+            </p>
+            <div className="mt-5 space-y-2 text-sm text-white/70">
+              <p className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                {BRAND.address}
               </p>
-              <p className="mt-3 max-w-sm text-lg text-white/70">
-                Lighting That Powers Every Moment.
-              </p>
-              <p className="mt-2 text-sm uppercase tracking-[0.18em] text-primary-glow">
-                {BRAND.tagline}
-              </p>
+              <a
+                className="flex items-center gap-2 hover:text-white"
+                href={telUrl(BRAND.phones.primary)}
+              >
+                <Phone className="h-4 w-4" />
+                {BRAND.phones.primaryDisplay}
+              </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button variant="whatsapp" asChild>
-                <a
-                  href={whatsappUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle /> WhatsApp
+            <div className="mt-5 flex gap-2">
+              <Button size="sm" variant="whatsapp" asChild>
+                <a href={whatsappUrl()} target="_blank" rel="noreferrer">
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
                 </a>
               </Button>
-              <Button variant="dark" asChild>
-                <a href={telUrl(BRAND.phones.primary)}>
-                  <Phone /> Call
-                </a>
-              </Button>
-              <Button variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10" asChild>
-                <a
-                  href={BRAND.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Share2 /> Facebook
+              <Button size="sm" variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10" asChild>
+                <a href={BRAND.facebook} target="_blank" rel="noreferrer">
+                  <Share2 className="h-4 w-4" />
+                  Facebook
                 </a>
               </Button>
             </div>
           </div>
+
+          {columns.map((col) => (
+            <div key={col.title}>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
+                {col.title}
+              </p>
+              <ul className="mt-4 space-y-2">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/70 transition hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</p>
-          <p>Wholesale & Retail · Karachi · Delivery across Pakistan</p>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/45">
+          <p>© {new Date().getFullYear()} HANIA Electronics. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-white">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-white">
+              Terms
+            </Link>
+          </div>
         </div>
       </Container>
     </footer>
