@@ -1,4 +1,5 @@
 import type { AnnouncementBar, Banner, HomepageConfig, Order } from "@/domain/types";
+import { mediaUrl } from "@/lib/media-url";
 
 const now = "2026-09-22T00:00:00.000Z";
 
@@ -20,8 +21,8 @@ export const seedBanners: Banner[] = [
     subtitle: "Flash lights, metal lights & solar — ready for Pakistani homes.",
     ctaText: "Shop Collection",
     ctaLink: "/shop",
-    desktopImage: "/hero/living-room.jpg",
-    mobileImage: "/hero/living-room.jpg",
+    desktopImage: mediaUrl("/media/hero/living-room.webp"),
+    mobileImage: mediaUrl("/media/hero/living-room.webp"),
     active: true,
     sortOrder: 1,
     startDate: null,
@@ -35,8 +36,8 @@ export const seedBanners: Banner[] = [
     subtitle: "Explore rechargeable solar lanterns and outdoor lights.",
     ctaText: "Shop Solar",
     ctaLink: "/shop/solar-lights",
-    desktopImage: "/products/camping.jpg",
-    mobileImage: "/products/camping.jpg",
+    desktopImage: mediaUrl("/media/products/camping.webp"),
+    mobileImage: mediaUrl("/media/products/camping.webp"),
     active: true,
     sortOrder: 2,
     startDate: null,
@@ -50,8 +51,8 @@ export const seedBanners: Banner[] = [
     subtitle: "Become a Hania dealer for distributor pricing across Pakistan.",
     ctaText: "Become a Dealer",
     ctaLink: "/become-a-dealer",
-    desktopImage: "/brand/dealer-bg.jpg",
-    mobileImage: "/brand/dealer-bg.jpg",
+    desktopImage: mediaUrl("/media/brand/dealer-bg.webp"),
+    mobileImage: mediaUrl("/media/brand/dealer-bg.webp"),
     active: true,
     sortOrder: 3,
     startDate: null,
@@ -103,7 +104,7 @@ export const seedOrders: Order[] = [
         productId: "p-001",
         name: "Multi-Function LED Torch",
         sku: "HE-FL-001",
-        image: "/brand/he3.jpg",
+        image: mediaUrl("/media/brand/he3.webp"),
         quantity: 2,
         unitPrice: 1500,
         lineTotal: 3000,

@@ -4,6 +4,7 @@ import { MessageCircle, Phone, MapPin, Share2 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { BRAND, telUrl, whatsappUrl } from "@/lib/brand";
+import { mediaUrl } from "@/lib/media-url";
 
 const columns = [
   {
@@ -52,7 +53,7 @@ export function Footer() {
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="relative h-10 w-10 overflow-hidden rounded-xl bg-white">
                 <Image
-                  src="/brand/logo-mark-transparent.webp"
+                  src={mediaUrl("/brand/logo-mark-transparent.webp")}
                   alt=""
                   fill
                   className="object-contain p-1.5"

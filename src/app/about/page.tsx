@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { CinematicImage } from "@/components/media/cinematic-image";
 import { media } from "@/data/catalog/media";
+import { mediaUrl } from "@/lib/media-url";
 import { BRAND, whatsappUrl, telUrl } from "@/lib/brand";
 import { MessageCircle, MapPin, Phone, ArrowRight } from "lucide-react";
 
@@ -191,7 +192,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-8 backdrop-blur-md">
                 <div className="relative mb-6 h-20 w-20">
                   <Image
-                    src="/brand/logo-mark-transparent.webp"
+                    src={mediaUrl("/brand/logo-mark-transparent.webp")}
                     alt="Hania Electronics"
                     fill
                     className="object-contain"

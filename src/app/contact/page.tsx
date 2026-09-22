@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   MessageCircle,
   Phone,
@@ -8,8 +9,10 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion/reveal";
 import { BRAND, whatsappUrl, telUrl } from "@/lib/brand";
+import { mediaUrl } from "@/lib/media-url";
 
 export const metadata = {
   title: "Contact — HANIA Electronics",
@@ -30,8 +33,11 @@ const CONTACTS = [
     label: "WhatsApp",
     value: BRAND.phones.whatsapp,
     display: `+92 ${BRAND.phones.whatsapp.slice(1)}`,
-    href: whatsappUrl("Assalam o Alaikum! I'd like to enquire about your products."),
-    description: "Fastest response — typically under 5 minutes during business hours.",
+    href: whatsappUrl(
+      "Assalam o Alaikum! I'd like to enquire about your products.",
+    ),
+    description:
+      "Fastest response — typically under 5 minutes during business hours.",
     cta: "Chat on WhatsApp",
     color: "bg-[#25D366]",
     external: true,
@@ -42,7 +48,8 @@ const CONTACTS = [
     value: BRAND.phones.primary,
     display: BRAND.phones.primaryDisplay,
     href: telUrl(BRAND.phones.primary),
-    description: "Speak directly with our team about products, orders, or wholesale rates.",
+    description:
+      "Speak directly with our team about products, orders, or wholesale rates.",
     cta: "Call now",
     color: "bg-primary",
     external: false,
@@ -66,35 +73,66 @@ const MAP_URL =
 export default function ContactPage() {
   return (
     <main className="min-h-screen bg-background">
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[#05070c] pt-[72px] text-white">
+      {/* ── Hero banner ─────────────────────────────────────── */}
+      <section className="relative isolate min-h-[420px] overflow-hidden text-white sm:min-h-[460px] md:min-h-[520px]">
+        <Image
+          src={mediaUrl("/media/brand/dealer-bg.webp")}
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 65% 55% at 15% 50%, rgba(34,211,238,0.07), transparent 55%), radial-gradient(ellipse 45% 45% at 85% 50%, rgba(245,197,122,0.05), transparent 50%)",
-          }}
+          className="absolute inset-0 bg-gradient-to-t from-[#050A1F] via-[#050A1F]/75 to-[#050A1F]/45"
         />
-        <Container className="relative py-20 md:py-28">
-          <Reveal variant="fade">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-white/35">
-              Get in touch
-            </p>
-          </Reveal>
-          <Reveal variant="slide" delay={0.05}>
-            <h1 className="mt-4 font-heading text-[clamp(2.2rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-[-0.04em]">
-              We&apos;re in Karachi.
-              <br />
-              <span className="text-primary-glow">We answer fast.</span>
-            </h1>
-          </Reveal>
-          <Reveal variant="blur" delay={0.1}>
-            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-white/45">
-              WhatsApp is the fastest way to reach us. A real person responds —
-              no bots, no queues, no ticket numbers.
-            </p>
-          </Reveal>
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[#0B6BCB]/20 mix-blend-multiply"
+        />
+
+        <Container className="relative flex min-h-[420px] flex-col justify-end pb-10 pt-28 sm:min-h-[460px] sm:pb-14 md:min-h-[520px] md:pb-16">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">
+            Contact HANIA
+          </p>
+          <h1 className="mt-3 max-w-xl font-heading text-[clamp(2.1rem,7vw,3.6rem)] font-semibold leading-[1.05] tracking-tight text-white">
+            We&apos;re in Karachi.
+            <span className="mt-1 block text-[#7DD3FC]">We answer fast.</span>
+          </h1>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-white/80 sm:text-[15px]">
+            WhatsApp is the fastest way to reach us. A real person responds —
+            no bots, no queues, no ticket numbers.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-xl bg-[#25D366] px-6 text-white hover:bg-[#1ebe57]"
+            >
+              <a
+                href={whatsappUrl(
+                  "Assalam o Alaikum! I'd like to enquire about your products.",
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp us
+              </a>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-12 rounded-xl border-white/30 bg-white/10 px-6 text-white backdrop-blur hover:bg-white/20 hover:text-white"
+            >
+              <a href={telUrl(BRAND.phones.primary)}>
+                <Phone className="h-4 w-4" />
+                Call {BRAND.phones.primaryDisplay}
+              </a>
+            </Button>
+          </div>
         </Container>
       </section>
 
@@ -146,8 +184,6 @@ export default function ContactPage() {
       <section className="border-t border-border/40 bg-accent/30 py-16 md:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-
-            {/* Showroom address */}
             <Reveal variant="clip">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-muted-foreground">
@@ -173,7 +209,6 @@ export default function ContactPage() {
                   Open in Google Maps
                 </a>
 
-                {/* Contacts */}
                 <div className="mt-8 space-y-3">
                   {BRAND.contacts.map((c) => (
                     <div key={c.phone} className="flex items-center gap-3">
@@ -185,7 +220,9 @@ export default function ContactPage() {
                         className="text-[14px] font-medium text-foreground/80 transition hover:text-foreground"
                       >
                         {c.phone}
-                        <span className="ml-2 text-muted-foreground">— {c.name}</span>
+                        <span className="ml-2 text-muted-foreground">
+                          — {c.name}
+                        </span>
                       </a>
                     </div>
                   ))}
@@ -193,7 +230,6 @@ export default function ContactPage() {
               </div>
             </Reveal>
 
-            {/* Business hours */}
             <Reveal variant="fade" delay={0.06}>
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-muted-foreground">
@@ -246,23 +282,26 @@ export default function ContactPage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/35">
                   For trade & wholesale
                 </p>
-                <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
+                <h2 className="mt-3 font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                   Dealer inquiries welcome.
                 </h2>
                 <p className="mt-2 max-w-sm text-[14px] text-white/50">
-                  Competitive wholesale rates, reliable supply, and direct brand support.
+                  Competitive wholesale rates, reliable supply, and direct brand
+                  support.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/become-a-dealer"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-dark transition hover:bg-white/90"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#0B1220] transition hover:bg-white/90"
                 >
                   Become a dealer
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
-                  href={whatsappUrl("I'd like to enquire about wholesale / dealer rates.")}
+                  href={whatsappUrl(
+                    "I'd like to enquire about wholesale / dealer rates.",
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/12"

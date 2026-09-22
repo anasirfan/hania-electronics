@@ -26,6 +26,7 @@ import { Container } from "@/components/layout/container";
 import { SearchCommand } from "@/features/search/search-command";
 import { DealerDialog } from "@/features/dealers/dealer-dialog";
 import { BRAND, telUrl, whatsappUrl } from "@/lib/brand";
+import { mediaUrl } from "@/lib/media-url";
 import { cn } from "@/lib/utils";
 import type { Category } from "@/domain/types";
 import { useCart } from "@/features/cart/store";
@@ -79,7 +80,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
             <Link href="/" className="flex items-center gap-3">
               <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B1220] p-2">
                 <Image
-                  src="/brand/logo-mark-transparent.webp"
+                  src={mediaUrl("/brand/logo-mark-transparent.webp")}
                   alt="Hania Electronics"
                   fill
                   className="object-contain p-1.5"

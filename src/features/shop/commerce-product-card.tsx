@@ -49,7 +49,7 @@ export function CommerceProductCard({
         className,
       )}
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#EEF2F7] sm:aspect-[4/5]">
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#F4F6F9] shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)] sm:aspect-[4/5]">
         <Link href={`/product/${product.slug}`} className="absolute inset-0">
           {image ? (
             <Image
@@ -61,6 +61,11 @@ export function CommerceProductCard({
             />
           ) : null}
         </Link>
+        {/* Soft bottom edge so white product shots don't melt into the card body */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-black/[0.04] to-transparent"
+        />
 
         {/* Left: status badges */}
         <div className="absolute left-2 top-2 flex max-w-[55%] flex-col gap-1 sm:left-3 sm:top-3">

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/api/admin"],
+      disallow: ["/admin", "/api/admin", "/order/confirmed"],
     },
     sitemap: "https://haniaelectronics.pk/sitemap.xml",
   };

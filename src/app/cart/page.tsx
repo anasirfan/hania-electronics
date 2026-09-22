@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { formatPKR } from "@/lib/money";
@@ -38,59 +38,85 @@ export default function CartPage() {
     (sum, l) => sum + getEffectivePrice(l.product) * l.item.quantity,
     0,
   );
+  const shippingPreview = subtotal >= 5000 || subtotal === 0 ? 0 : 250;
 
   return (
-    <div className="bg-[#FAFBFD] py-10 md:py-14">
+    <div className="bg-[#FAFBFD] pb-28 pt-8 sm:py-12 md:py-14">
       <Container>
-        <h1 className="font-heading text-3xl font-semibold tracking-tight">
-          Cart
-        </h1>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
+            Cart
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {lines.length
+              ? `${lines.length} item${lines.length === 1 ? "" : "s"} in your cart`
+              : "Your bag is empty"}
+          </p>
+        </div>
+
         {lines.length === 0 ? (
-          <div className="mt-10 rounded-2xl border border-border bg-white p-8 text-center">
-            <p className="text-muted-foreground">Your cart is empty.</p>
-            <Button asChild className="mt-4">
-              <Link href="/shop">Continue shopping</Link>
+          <div className="rounded-2xl border border-border bg-white p-8 text-center shadow-sm sm:p-12">
+            <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EEF2F7] text-primary">
+              <ShoppingBag className="h-6 w-6" />
+            </span>
+            <p className="mt-4 font-heading text-lg font-semibold">
+              Nothing here yet
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Browse metal, flash, and solar lights — COD available.
+            </p>
+            <Button asChild className="mt-5">
+              <Link href="/shop">Start shopping</Link>
             </Button>
           </div>
         ) : (
-          <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
-            <div className="space-y-4">
+          <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
+            <div className="space-y-3 sm:space-y-4">
               {lines.map(({ item, product }) => {
                 const image = getPrimaryImage(product);
                 const price = getEffectivePrice(product);
                 return (
                   <div
                     key={item.productId}
-                    className="flex gap-4 rounded-2xl border border-border bg-white p-4"
+                    className="flex gap-3 rounded-2xl border border-border bg-white p-3 shadow-sm sm:gap-4 sm:p-4"
                   >
-                    <div className="relative h-24 w-24 overflow-hidden rounded-xl bg-accent">
+                    <Link
+                      href={`/product/${product.slug}`}
+                      className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-accent sm:h-24 sm:w-24"
+                    >
                       {image ? (
                         <Image src={image} alt="" fill className="object-cover" />
                       ) : null}
-                    </div>
-                    <div className="flex flex-1 flex-col">
+                    </Link>
+                    <div className="flex min-w-0 flex-1 flex-col">
                       <Link
                         href={`/product/${product.slug}`}
-                        className="font-medium hover:text-primary"
+                        className="line-clamp-2 text-sm font-medium hover:text-primary sm:text-base"
                       >
                         {product.name}
                       </Link>
-                      <p className="text-sm font-semibold">{formatPKR(price)}</p>
-                      <div className="mt-auto flex items-center justify-between">
+                      <p className="mt-0.5 text-sm font-semibold">
+                        {formatPKR(price)}
+                      </p>
+                      <div className="mt-auto flex items-center justify-between pt-2">
                         <div className="inline-flex items-center rounded-lg border">
                           <button
                             type="button"
-                            className="px-2 py-1"
+                            className="px-2.5 py-1.5"
+                            aria-label="Decrease quantity"
                             onClick={() =>
                               setQuantity(item.productId, item.quantity - 1)
                             }
                           >
                             <Minus className="h-3.5 w-3.5" />
                           </button>
-                          <span className="px-2 text-sm">{item.quantity}</span>
+                          <span className="min-w-7 px-1 text-center text-sm">
+                            {item.quantity}
+                          </span>
                           <button
                             type="button"
-                            className="px-2 py-1"
+                            className="px-2.5 py-1.5"
+                            aria-label="Increase quantity"
                             onClick={() =>
                               setQuantity(item.productId, item.quantity + 1)
                             }
@@ -102,34 +128,65 @@ export default function CartPage() {
                           type="button"
                           onClick={() => removeItem(item.productId)}
                           className="text-muted-foreground hover:text-destructive"
+                          aria-label="Remove"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
                       </div>
                     </div>
-                    <p className="font-semibold">
+                    <p className="hidden font-semibold sm:block">
                       {formatPKR(price * item.quantity)}
                     </p>
                   </div>
                 );
               })}
             </div>
-            <aside className="h-fit rounded-2xl border border-border bg-white p-5">
+
+            <aside className="hidden h-fit rounded-2xl border border-border bg-white p-5 shadow-sm lg:sticky lg:top-24 lg:block">
               <h2 className="font-heading text-lg font-semibold">Summary</h2>
-              <div className="mt-4 flex justify-between text-sm">
-                <span>Subtotal</span>
-                <span className="font-semibold">{formatPKR(subtotal)}</span>
+              <div className="mt-4 space-y-1 text-sm">
+                <div className="flex justify-between">
+                  <span>Subtotal</span>
+                  <span className="font-semibold">{formatPKR(subtotal)}</span>
+                </div>
+                <div className="flex justify-between text-muted-foreground">
+                  <span>Shipping (est.)</span>
+                  <span>
+                    {shippingPreview === 0
+                      ? "Free"
+                      : formatPKR(shippingPreview)}
+                  </span>
+                </div>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground">
-                Shipping calculated at checkout. Cash on delivery available.
+              <p className="mt-3 text-xs text-muted-foreground">
+                Free shipping on Rs. 5,000+. Final total at checkout.
               </p>
               <Button asChild className="mt-5 w-full">
                 <Link href="/checkout">Proceed to checkout</Link>
+              </Button>
+              <Button asChild variant="outline" className="mt-2 w-full">
+                <Link href="/shop">Continue shopping</Link>
               </Button>
             </aside>
           </div>
         )}
       </Container>
+
+      {lines.length > 0 ? (
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 p-3 backdrop-blur lg:hidden">
+          <div className="mx-auto flex max-w-lg items-center gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="text-[11px] text-muted-foreground">Subtotal</p>
+              <p className="font-heading text-lg font-semibold">
+                {formatPKR(subtotal)}
+              </p>
+            </div>
+            <Button asChild className="flex-1">
+              <Link href="/checkout">Checkout</Link>
+            </Button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   Megaphone,
   Home,
   ShoppingBag,
+  Database,
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ const links = [
   { href: "/admin/announcement", label: "Announcement", icon: Megaphone },
   { href: "/admin/homepage", label: "Homepage", icon: Home },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },
+  { href: "/admin/setup", label: "Supabase", icon: Database },
 ];
 
 export function AdminSidebar() {

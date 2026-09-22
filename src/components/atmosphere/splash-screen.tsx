@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
+import { mediaUrl } from "@/lib/media-url";
 
 const SEEN_KEY = "hania-splash-seen";
 
@@ -139,7 +140,7 @@ export function SplashScreen() {
         }}
       >
         <Image
-          src="/brand/logo-mark-transparent.webp"
+          src={mediaUrl("/brand/logo-mark-transparent.webp")}
           alt="Hania Electronics"
           fill
           className="object-contain p-4"

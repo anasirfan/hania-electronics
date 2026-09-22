@@ -116,7 +116,7 @@
   h5,
   h6 {
     font-family: var(--font-outfit), var(--font-jakarta), sans-serif;
-    @apply tracking-tight text-foreground;
+    @apply tracking-tight;
   }
 }
 
