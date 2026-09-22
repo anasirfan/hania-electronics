@@ -6,26 +6,34 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { AnnouncementBar } from "@/features/cms/announcement-bar";
 import { CartDrawer } from "@/features/cart/cart-drawer";
+import { defaultSiteSettings } from "@/lib/site-settings";
 import type {
   AnnouncementBar as AnnouncementType,
   Category,
   Product,
+  SiteSettings,
 } from "@/domain/types";
 
 type CatalogPayload = {
   categories: Category[];
   products: Product[];
   announcement: AnnouncementType | null;
+  settings: SiteSettings;
 };
 
 const CatalogContext = React.createContext<CatalogPayload>({
   categories: [],
   products: [],
   announcement: null,
+  settings: defaultSiteSettings(),
 });
 
 export function useStorefrontCatalog() {
   return React.useContext(CatalogContext);
+}
+
+export function useSiteSettings() {
+  return React.useContext(CatalogContext).settings;
 }
 
 export function StorefrontShell({ children }: { children: React.ReactNode }) {
@@ -35,6 +43,7 @@ export function StorefrontShell({ children }: { children: React.ReactNode }) {
     categories: [],
     products: [],
     announcement: null,
+    settings: defaultSiteSettings(),
   });
 
   React.useEffect(() => {
@@ -46,6 +55,7 @@ export function StorefrontShell({ children }: { children: React.ReactNode }) {
           categories: d.categories ?? [],
           products: d.products ?? [],
           announcement: d.announcement ?? null,
+          settings: d.settings ?? defaultSiteSettings(),
         }),
       );
   }, [isAdmin]);

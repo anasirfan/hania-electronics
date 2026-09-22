@@ -86,37 +86,4 @@ export const seedHomepage: HomepageConfig = {
   updatedAt: now,
 };
 
-export const seedOrders: Order[] = [
-  {
-    id: "ord-demo-1",
-    orderNumber: "HE-10001",
-    customer: {
-      fullName: "Ahmed Raza",
-      phone: "03331234567",
-      email: "ahmed@example.com",
-      address: "House 12, Block A, Gulshan",
-      city: "Karachi",
-      province: "Sindh",
-      postalCode: "75300",
-    },
-    items: [
-      {
-        productId: "p-001",
-        name: "Multi-Function LED Torch",
-        sku: "HE-FL-001",
-        image: mediaUrl("/media/brand/he3.webp"),
-        quantity: 2,
-        unitPrice: 1500,
-        lineTotal: 3000,
-      },
-    ],
-    subtotal: 3000,
-    discount: 0,
-    shipping: 250,
-    total: 3250,
-    paymentMethod: "cod",
-    status: "processing",
-    createdAt: now,
-    updatedAt: now,
-  },
-];
+export const seedOrders: Order[] = [];

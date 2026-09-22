@@ -25,12 +25,14 @@ import {
 import { Container } from "@/components/layout/container";
 import { SearchCommand } from "@/features/search/search-command";
 import { DealerDialog } from "@/features/dealers/dealer-dialog";
-import { BRAND, telUrl, whatsappUrl } from "@/lib/brand";
+import { telUrl } from "@/lib/brand";
 import { mediaUrl } from "@/lib/media-url";
 import { cn } from "@/lib/utils";
 import type { Category } from "@/domain/types";
 import { useCart } from "@/features/cart/store";
 import { useWishlist } from "@/features/wishlist/store";
+import { useSiteSettings } from "@/components/layout/storefront-shell";
+import { whatsappUrlFrom } from "@/lib/site-settings";
 
 const links = [
   { href: "/shop", label: "Shop" },
@@ -40,6 +42,8 @@ const links = [
 ];
 
 export function Header({ categories = [] }: { categories?: Category[] }) {
+  const settings = useSiteSettings();
+  const wa = (msg?: string) => whatsappUrlFrom(settings, msg);
   const [scrolled, setScrolled] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [dealerOpen, setDealerOpen] = React.useState(false);
@@ -180,7 +184,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
                 asChild
               >
                 <a
-                  href={whatsappUrl(
+                  href={wa(
                     "Assalam o Alaikum! I need help with lighting products.",
                   )}
                   target="_blank"
@@ -196,7 +200,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
                 className="hidden h-10 rounded-full md:inline-flex"
                 asChild
               >
-                <a href={telUrl(BRAND.phones.primary)}>
+                <a href={telUrl(settings.phonePrimary)}>
                   <Phone className="h-4 w-4" />
                   Call
                 </a>

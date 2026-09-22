@@ -81,7 +81,7 @@ export default function TrackOrderClient() {
                 id="orderNumber"
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value)}
-                placeholder="e.g. HE-10001"
+                placeholder="e.g. HE-10042"
                 className="h-11"
                 required
               />
@@ -136,8 +136,7 @@ export default function TrackOrderClient() {
         ) : !loading && !error ? (
           <div className="mt-8 rounded-2xl border border-dashed border-border bg-white/60 p-6 text-center">
             <p className="text-sm text-muted-foreground">
-              Demo tip: try order <strong>HE-10001</strong> with phone{" "}
-              <strong>03331234567</strong>
+              Enter your order number and checkout phone to see delivery status.
             </p>
             <Button asChild variant="link" className="mt-2">
               <Link href="/shop">Browse products</Link>

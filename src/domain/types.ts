@@ -156,6 +156,39 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface SiteContactPerson {
+  name: string;
+  phone: string;
+  tel: string;
+}
+
+export interface SiteBusinessHour {
+  day: string;
+  hours: string;
+}
+
+/** Editable store contact / brand details (Admin → Store settings) */
+export interface SiteSettings {
+  storeName: string;
+  tagline: string;
+  supportLine: string;
+  email: string;
+  address: string;
+  facebookUrl: string;
+  mapUrl: string;
+  whatsapp: string;
+  whatsappE164: string;
+  phonePrimary: string;
+  phonePrimaryDisplay: string;
+  phoneSecondary: string;
+  phoneSecondaryDisplay: string;
+  phoneLandline: string;
+  phoneLandlineDisplay: string;
+  contacts: SiteContactPerson[];
+  businessHours: SiteBusinessHour[];
+  updatedAt: string;
+}
+
 /** Effective selling price */
 export function getEffectivePrice(product: Product): number {
   if (product.salePrice != null && product.salePrice > 0) {

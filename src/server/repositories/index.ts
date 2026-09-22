@@ -88,3 +88,5 @@ export const orderRepository = dual(
 export function getDataBackend(): "supabase" | "mock" {
   return isSupabaseConfigured() ? "supabase" : "mock";
 }
+
+export { siteSettingsRepository } from "@/server/repositories/site-settings";
