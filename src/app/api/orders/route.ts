@@ -18,8 +18,8 @@ export async function POST(req: Request) {
     paymentMethod: body.paymentMethod ?? "cod",
   });
 
-  // Don't block checkout if email provider fails
-  void sendOrderEmails(order);
+  // Await so serverless/runtime doesn't kill the send mid-flight
+  await sendOrderEmails(order);
 
   return jsonOk({ order }, { status: 201 });
 }

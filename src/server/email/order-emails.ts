@@ -12,7 +12,7 @@ function resendClient() {
 function fromAddress(storeName: string) {
   const from =
     process.env.EMAIL_FROM ??
-    `${storeName} <orders@haniaelectronics.pk>`;
+    `${storeName} <orders@haniaelectronics.com>`;
   return from;
 }
 
@@ -25,7 +25,7 @@ function storeNotifyEmail(fallback: string) {
 }
 
 function appUrl() {
-  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://haniaelectronics.pk").replace(
+  return (process.env.NEXT_PUBLIC_APP_URL ?? "https://haniaelectronics.com").replace(
     /\/$/,
     "",
   );
