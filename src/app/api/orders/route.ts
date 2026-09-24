@@ -1,5 +1,6 @@
 import { orderRepository } from "@/server/repositories";
 import { jsonError, jsonOk, parseJson } from "@/server/api/http";
+import { sendOrderEmails } from "@/server/email/order-emails";
 import type { Order } from "@/domain/types";
 
 export async function POST(req: Request) {
@@ -16,6 +17,9 @@ export async function POST(req: Request) {
     status: body.status ?? "pending",
     paymentMethod: body.paymentMethod ?? "cod",
   });
+
+  // Don't block checkout if email provider fails
+  void sendOrderEmails(order);
 
   return jsonOk({ order }, { status: 201 });
 }

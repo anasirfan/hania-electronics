@@ -187,13 +187,14 @@ export default function CheckoutPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Email</Label>
+                <Label>Email (for order confirmation)</Label>
                 <Input
                   className="h-11"
                   type="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   autoComplete="email"
+                  placeholder="you@email.com"
                 />
               </div>
               <div className="space-y-2 sm:col-span-2">
