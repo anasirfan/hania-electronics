@@ -19,7 +19,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://haniaelectronics.pk"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://haniaelectronics.com",
+  ),
   title: {
     default: `${BRAND.name} | Premium Lighting Pakistan`,
     template: `%s | ${BRAND.name}`,
@@ -27,8 +29,11 @@ export const metadata: Metadata = {
   description:
     "Shop premium emergency lights, solar lights, metal lights, and flash lights. Cash on delivery across Pakistan.",
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
-    apple: [{ url: "/favicon.png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
   },
   keywords: [
     "Hania Electronics",
@@ -43,6 +48,7 @@ export const metadata: Metadata = {
     description: BRAND.supportLine,
     type: "website",
     locale: "en_PK",
+    url: "https://haniaelectronics.com",
     images: [{ url: "/scenes/bedroom-warm.webp" }],
   },
   twitter: {
@@ -58,7 +64,7 @@ const jsonLd = {
   "@type": "ElectronicsStore",
   name: BRAND.name,
   description: BRAND.tagline,
-  url: "https://haniaelectronics.pk",
+  url: "https://haniaelectronics.com",
   telephone: BRAND.phones.primaryDisplay,
   address: {
     "@type": "PostalAddress",
