@@ -5,14 +5,26 @@ import Image from "next/image";
 import { MessageCircle, Phone, MapPin, Share2 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { useSiteSettings } from "@/components/layout/storefront-shell";
+import {
+  useSiteSettings,
+  useStorefrontCatalog,
+} from "@/components/layout/storefront-shell";
 import { telUrl } from "@/lib/brand";
 import { mediaUrl } from "@/lib/media-url";
 import { whatsappUrlFrom } from "@/lib/site-settings";
 
 export function Footer() {
   const settings = useSiteSettings();
+  const { categories } = useStorefrontCatalog();
   const wa = (msg?: string) => whatsappUrlFrom(settings, msg);
+
+  const shopLinks = [
+    { label: "All Products", href: "/shop" },
+    ...categories.map((c) => ({
+      label: c.name,
+      href: `/shop/${c.slug}`,
+    })),
+  ];
 
   const columns = [
     {
@@ -25,12 +37,7 @@ export function Footer() {
     },
     {
       title: "Shop",
-      links: [
-        { label: "All Products", href: "/shop" },
-        { label: "Metal Lights", href: "/shop/metal-lights" },
-        { label: "Flash Lights", href: "/shop/flash-lights" },
-        { label: "Solar Lights", href: "/shop/solar-lights" },
-      ],
+      links: shopLinks,
     },
     {
       title: "Support",
@@ -72,7 +79,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 max-w-sm text-sm text-white/65">
               {settings.supportLine ||
-                "Premium lighting for Pakistani homes and businesses — metal, flash, and solar collections with cash on delivery."}
+                "Premium products for Pakistani homes and businesses, with cash on delivery."}
             </p>
             <div className="mt-5 space-y-2 text-sm text-white/70">
               <p className="flex items-start gap-2">

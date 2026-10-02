@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:supabase": "node scripts/seed-supabase.mjs",
+    "catalog:import": "node scripts/import-real-catalog.mjs",
     "db:schema": "node scripts/apply-schema.mjs",
     "media:migrate": "node scripts/migrate-media-to-supabase.mjs"
   },

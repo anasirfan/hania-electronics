@@ -4,7 +4,7 @@ export const BRAND = {
   tagline: "Illuminate the Night Together",
   headline: "Lighting That Powers Every Moment.",
   supportLine:
-    "Emergency lights. Solar. Professional torches. Built for every home in Pakistan.",
+    "Lighting, accessories, and everyday electronics built for Pakistani homes.",
   facebook: "https://www.facebook.com/memonbrand",
   address:
     "Shop # S78, 3rd Floor M-3, Falak Corporate City, Talpur Road, Boulton Market, Karachi",

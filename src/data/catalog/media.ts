@@ -18,13 +18,12 @@ export const media = {
     headlampLifestyle: mediaUrl("/scenes/headlamp-lifestyle.webp"),
   },
   categories: {
-    torch: mediaUrl("/media/categories/torch.webp"),
-    solar: mediaUrl("/media/categories/solar.webp"),
-    emergency: mediaUrl("/media/categories/emergency.webp"),
-    "head-lamps": mediaUrl("/media/categories/head-lamps-c.webp"),
-    bulbs: mediaUrl("/media/categories/bulbs.webp"),
-    outdoor: mediaUrl("/media/categories/outdoor.webp"),
-    accessories: mediaUrl("/media/categories/accessories.webp"),
+    "light-your-night": mediaUrl("/media/categories/light-your-night.jpg"),
+    "voco-premium-accessories": mediaUrl(
+      "/media/categories/voco-premium-accessories.jpg",
+    ),
+    "style-care": mediaUrl("/media/categories/style-care.jpg"),
+    "smart-living": mediaUrl("/media/categories/smart-living.jpg"),
   },
   products: {
     torch: mediaUrl("/media/products/torch.webp"),

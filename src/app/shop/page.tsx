@@ -7,10 +7,15 @@ import {
   productRepository,
 } from "@/server/repositories";
 
-export const metadata: Metadata = {
-  title: "Shop",
-  description: "Browse all HANIA Electronics lighting products.",
-};
+import { catalogSubtitle } from "@/lib/catalog-copy";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const categories = await categoryRepository.list(false);
+  return {
+    title: "Shop",
+    description: catalogSubtitle(categories),
+  };
+}
 
 export default async function ShopPage() {
   const [products, categories] = await Promise.all([

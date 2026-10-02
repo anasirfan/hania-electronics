@@ -9,14 +9,7 @@ export type Purpose =
 
 export type ProductBadge = "sale" | "new" | "bestseller";
 
-export type CategoryId =
-  | "torch"
-  | "solar"
-  | "emergency"
-  | "head-lamps"
-  | "bulbs"
-  | "outdoor"
-  | "accessories";
+export type CategoryId = string;
 
 export interface Product {
   id: string;

@@ -8,6 +8,8 @@ import {
 } from "@/server/repositories";
 import { jsonOk } from "@/server/api/http";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const [categories, products, banners, announcement, homepage, settings] =
     await Promise.all([

@@ -95,7 +95,7 @@ export function ProductCard({
           </Tooltip>
         </div>
 
-        <Link href={`/products/${product.slug}`} tabIndex={-1} aria-hidden>
+        <Link href={`/product/${product.slug}`} tabIndex={-1} aria-hidden>
           <ProductVisual
             src={product.image}
             alt={product.name}
@@ -110,7 +110,7 @@ export function ProductCard({
             large ? "px-6 pb-5 pt-5 md:px-7 md:pb-6 md:pt-6" : "px-5 pb-4 pt-4",
           )}
         >
-          <Link href={`/products/${product.slug}`}>
+          <Link href={`/product/${product.slug}`}>
             <h3
               className={cn(
                 "font-heading font-semibold tracking-tight text-foreground transition hover:text-primary-glow",

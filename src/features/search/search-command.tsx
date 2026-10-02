@@ -15,17 +15,10 @@ import { formatPKR } from "@/lib/money";
 import {
   getEffectivePrice,
   getPrimaryImage,
+  type Category,
   type Product,
 } from "@/domain/types";
 import { ArrowRight } from "lucide-react";
-
-const POPULAR = [
-  "LED Torch",
-  "Emergency Light",
-  "Solar Lantern",
-  "Metal Light",
-  "Flash Light",
-];
 
 const QUICK_LINKS = [
   { label: "All Products", href: "/shop" },
@@ -43,6 +36,7 @@ export function SearchCommand({
 }) {
   const router = useRouter();
   const [items, setItems] = React.useState<Product[]>([]);
+  const [categories, setCategories] = React.useState<Category[]>([]);
   const [query, setQuery] = React.useState("");
 
   React.useEffect(() => {
@@ -53,6 +47,9 @@ export function SearchCommand({
       .then((r) => r.json())
       .then((d) => {
         const products = (d.products ?? []) as Product[];
+        if (Array.isArray(d.categories)) {
+          setCategories(d.categories as Category[]);
+        }
         if (!q) {
           setItems(
             products
@@ -88,7 +85,7 @@ export function SearchCommand({
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
       <CommandInput
-        placeholder="Search lights, torches, solar…"
+        placeholder="Search products…"
         value={query}
         onValueChange={setQuery}
       />
@@ -110,11 +107,17 @@ export function SearchCommand({
             ))}
           </CommandGroup>
         ) : null}
-        {!query.trim() ? (
-          <CommandGroup heading="Popular searches">
-            {POPULAR.map((term) => (
-              <CommandItem key={term} onSelect={() => setQuery(term)}>
-                {term}
+        {!query.trim() && categories.length ? (
+          <CommandGroup heading="Categories">
+            {categories.map((cat) => (
+              <CommandItem
+                key={cat.id}
+                onSelect={() => {
+                  router.push(`/shop/${cat.slug}`);
+                  onOpenChange(false);
+                }}
+              >
+                {cat.name}
               </CommandItem>
             ))}
           </CommandGroup>

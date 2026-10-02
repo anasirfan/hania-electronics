@@ -19,7 +19,7 @@ export function ShopByCategorySection({
               Shop by Category
             </h2>
             <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
-              Metal, flash, and solar lighting — all from HANIA.
+              {categories.map((c) => c.name).join(" · ") || "Browse the full HANIA catalog."}
             </p>
           </div>
           <Link href="/shop" className="text-xs font-medium text-primary sm:text-sm">

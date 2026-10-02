@@ -4,7 +4,8 @@ import * as React from "react";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { ProductCard } from "@/features/products/product-card";
-import { products } from "@/data/catalog/products";
+import { useStorefrontCatalog } from "@/components/layout/storefront-shell";
+import { mapShopProduct } from "@/features/products/map-from-shop";
 import { cn } from "@/lib/utils";
 import type { Purpose } from "@/features/products/types";
 
@@ -41,8 +42,13 @@ const environments: {
 ];
 
 export function ShopByPurposeSection() {
+  const { products: shopProducts, categories } = useStorefrontCatalog();
   const [purpose, setPurpose] = React.useState<Purpose>("home");
   const active = environments.find((e) => e.id === purpose)!;
+  const slugById = new Map(categories.map((c) => [c.id, c.slug]));
+  const products = shopProducts.map((p) =>
+    mapShopProduct(p, slugById.get(p.categoryId) ?? p.categoryId),
+  );
   const filtered = products.filter((p) => p.purposes.includes(purpose)).slice(0, 3);
 
   return (

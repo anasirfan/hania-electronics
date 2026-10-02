@@ -1,47 +1,28 @@
 import type { Category } from "@/features/products/types";
-import { media } from "@/data/catalog/media";
 
 export const categories: Category[] = [
   {
-    id: "torch",
-    name: "Torch",
-    description: "Professional beam torches",
-    image: media.categories.torch,
+    id: "light-your-night",
+    name: "Light Your Night",
+    description: "Rechargeable bulbs and backup lighting for every blackout.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/light-your-night.jpg",
   },
   {
-    id: "solar",
-    name: "Solar",
-    description: "Solar-powered lighting",
-    image: media.categories.solar,
+    id: "voco-premium-accessories",
+    name: "VOCO Premium Accessories",
+    description: "Cables, chargers, earbuds and smartwatches by VOCO.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/voco-premium-accessories.jpg",
   },
   {
-    id: "emergency",
-    name: "Emergency",
-    description: "Backup safety lights",
-    image: media.categories.emergency,
+    id: "style-care",
+    name: "Style & Care",
+    description: "Personal care and style essentials for everyday confidence.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/style-care.jpg",
   },
   {
-    id: "head-lamps",
-    name: "Head Lamps",
-    description: "Hands-free lighting",
-    image: media.categories["head-lamps"],
-  },
-  {
-    id: "bulbs",
-    name: "Bulbs",
-    description: "Efficient home bulbs",
-    image: media.categories.bulbs,
-  },
-  {
-    id: "outdoor",
-    name: "Outdoor",
-    description: "Exterior & site lights",
-    image: media.categories.outdoor,
-  },
-  {
-    id: "accessories",
-    name: "Accessories",
-    description: "Everyday essentials",
-    image: media.categories.accessories,
+    id: "smart-living",
+    name: "Smart Living",
+    description: "Smart home gadgets that make daily life easier.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/smart-living.jpg",
   },
 ];

@@ -1,15 +1,14 @@
 import type { Category } from "@/domain/types";
-import { mediaUrl } from "@/lib/media-url";
 
-const now = "2026-09-22T00:00:00.000Z";
+const now = "2026-10-02T13:40:04.519Z";
 
 export const seedCategories: Category[] = [
   {
-    id: "cat-metal-lights",
-    name: "Metal Lights",
-    slug: "metal-lights",
-    description: "Durable metal body lights for home and work.",
-    image: mediaUrl("/media/categories/metal-lights.webp"),
+    id: "cat-light-your-night",
+    name: "Light Your Night",
+    slug: "light-your-night",
+    description: "Rechargeable bulbs and backup lighting for every blackout.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/light-your-night.jpg",
     featured: true,
     sortOrder: 1,
     active: true,
@@ -17,11 +16,11 @@ export const seedCategories: Category[] = [
     updatedAt: now,
   },
   {
-    id: "cat-flash-lights",
-    name: "Flash Lights",
-    slug: "flash-lights",
-    description: "Professional torches and tactical flashlights.",
-    image: mediaUrl("/media/categories/flash-lights.webp"),
+    id: "cat-voco-premium",
+    name: "VOCO Premium Accessories",
+    slug: "voco-premium-accessories",
+    description: "Cables, chargers, earbuds and smartwatches by VOCO.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/voco-premium-accessories.jpg",
     featured: true,
     sortOrder: 2,
     active: true,
@@ -29,13 +28,25 @@ export const seedCategories: Category[] = [
     updatedAt: now,
   },
   {
-    id: "cat-solar-lights",
-    name: "Solar Lights",
-    slug: "solar-lights",
-    description: "Solar-powered lanterns and outdoor lighting.",
-    image: mediaUrl("/media/categories/solar-lights.webp"),
+    id: "cat-style-care",
+    name: "Style & Care",
+    slug: "style-care",
+    description: "Personal care and style essentials for everyday confidence.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/style-care.jpg",
     featured: true,
     sortOrder: 3,
+    active: true,
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "cat-smart-living",
+    name: "Smart Living",
+    slug: "smart-living",
+    description: "Smart home gadgets that make daily life easier.",
+    image: "https://exsbgevvotsljjkdcloh.supabase.co/storage/v1/object/public/uploads/media/categories/smart-living.jpg",
+    featured: true,
+    sortOrder: 4,
     active: true,
     createdAt: now,
     updatedAt: now,

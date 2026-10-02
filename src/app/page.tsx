@@ -14,12 +14,17 @@ import {
 } from "@/features/home/commerce-sections";
 import { NewsletterSection } from "@/features/home/sections/newsletter";
 import type { Product } from "@/domain/types";
+import { catalogSubtitle } from "@/lib/catalog-copy";
 
-export const metadata: Metadata = {
-  title: "Shop Premium Lighting",
-  description:
-    "HANIA Electronics — metal lights, flash lights, and solar lights with cash on delivery across Pakistan.",
-};
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const categories = await categoryRepository.list(false);
+  return {
+    title: "Shop",
+    description: catalogSubtitle(categories),
+  };
+}
 
 function pickProducts(all: Product[], ids: string[], fallback: Product[]) {
   const byId = new Map(all.map((p) => [p.id, p]));

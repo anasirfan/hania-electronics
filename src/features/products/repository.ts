@@ -1,75 +1,72 @@
-import { categories } from "@/data/catalog/categories";
-import { products } from "@/data/catalog/products";
+import {
+  categoryRepository,
+  productRepository as shopProductRepository,
+} from "@/server/repositories";
+import {
+  mapShopCategory,
+  mapShopProduct,
+} from "@/features/products/map-from-shop";
+import type { Category, Product } from "@/features/products/types";
 import { purposes } from "@/data/catalog/purposes";
-import type {
-  Category,
-  CategoryId,
-  Product,
-  Purpose,
-  PurposeOption,
-} from "@/features/products/types";
+import type { PurposeOption } from "@/features/products/types";
 
-export interface ProductRepository {
-  getAll(): Promise<Product[]>;
-  getById(id: string): Promise<Product | undefined>;
-  getBySlug(slug: string): Promise<Product | undefined>;
-  getBestsellers(): Promise<Product[]>;
-  getFeatured(): Promise<Product[]>;
-  getByCategory(category: CategoryId): Promise<Product[]>;
-  getByPurpose(purpose: Purpose): Promise<Product[]>;
-  search(query: string): Promise<Product[]>;
-  getCategories(): Promise<Category[]>;
-  getPurposes(): Promise<PurposeOption[]>;
+async function catalogMaps() {
+  const [shopProducts, shopCategories] = await Promise.all([
+    shopProductRepository.list({ publishedOnly: true }),
+    categoryRepository.list(false),
+  ]);
+  const slugById = new Map(shopCategories.map((c) => [c.id, c.slug]));
+  const products = shopProducts.map((p) =>
+    mapShopProduct(p, slugById.get(p.categoryId) ?? p.categoryId),
+  );
+  const categories = shopCategories.map(mapShopCategory);
+  return { products, categories, shopCategories };
 }
 
-class LocalProductRepository implements ProductRepository {
+export const productRepository = {
   async getAll(): Promise<Product[]> {
+    const { products } = await catalogMaps();
     return products;
-  }
-
-  async getById(id: string): Promise<Product | undefined> {
-    return products.find((p) => p.id === id);
-  }
-
-  async getBySlug(slug: string): Promise<Product | undefined> {
-    return products.find((p) => p.slug === slug);
-  }
-
-  async getBestsellers(): Promise<Product[]> {
-    return products.filter((p) => p.bestseller);
-  }
+  },
 
   async getFeatured(): Promise<Product[]> {
+    const { products } = await catalogMaps();
     return products.filter((p) => p.featured);
-  }
+  },
 
-  async getByCategory(category: CategoryId): Promise<Product[]> {
+  async getBestsellers(): Promise<Product[]> {
+    const { products } = await catalogMaps();
+    return products.filter((p) => p.bestseller);
+  },
+
+  async getBySlug(slug: string): Promise<Product | undefined> {
+    const { products } = await catalogMaps();
+    return products.find((p) => p.slug === slug);
+  },
+
+  async getByCategory(category: string): Promise<Product[]> {
+    const { products } = await catalogMaps();
     return products.filter((p) => p.category === category);
-  }
+  },
 
-  async getByPurpose(purpose: Purpose): Promise<Product[]> {
-    return products.filter((p) => p.purposes.includes(purpose));
-  }
+  async getByPurpose(purpose: string): Promise<Product[]> {
+    const { products } = await catalogMaps();
+    return products.filter((p) => p.purposes.includes(purpose as never));
+  },
 
-  async search(query: string): Promise<Product[]> {
-    const q = query.trim().toLowerCase();
-    if (!q) return products;
-    return products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        p.category.includes(q),
-    );
-  }
+  async getRelated(product: Product, limit = 4): Promise<Product[]> {
+    const { products } = await catalogMaps();
+    return products
+      .filter((p) => p.category === product.category && p.id !== product.id)
+      .slice(0, limit);
+  },
 
   async getCategories(): Promise<Category[]> {
+    const { categories } = await catalogMaps();
     return categories;
-  }
+  },
 
   async getPurposes(): Promise<PurposeOption[]> {
     return purposes;
-  }
-}
-
-export const productRepository: ProductRepository =
-  new LocalProductRepository();
+  },
+};

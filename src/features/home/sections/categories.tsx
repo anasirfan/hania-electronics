@@ -1,10 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
 import { CinematicImage } from "@/components/media/cinematic-image";
-import { categories } from "@/data/catalog/categories";
+import { useStorefrontCatalog } from "@/components/layout/storefront-shell";
 
 export function CategoriesSection() {
+  const { categories } = useStorefrontCatalog();
+
   return (
     <section id="categories" className="relative py-20 md:py-28">
       <Container className="mb-10">
@@ -16,7 +20,7 @@ export function CategoriesSection() {
           </Reveal>
           <Reveal variant="mask">
             <h2 className="mt-3 font-heading text-3xl font-semibold tracking-[-0.03em] sm:text-5xl">
-              Find the right light
+              Shop by category
             </h2>
           </Reveal>
         </div>
@@ -31,7 +35,7 @@ export function CategoriesSection() {
             className="w-[240px] shrink-0 snap-start sm:w-[280px]"
           >
             <Link
-              href="#bestsellers"
+              href={`/shop/${cat.slug}`}
               className="group relative block aspect-[3/4] w-full overflow-hidden rounded-[20px] bg-[#131f33]"
             >
               {cat.image ? (
