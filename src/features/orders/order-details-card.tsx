@@ -31,9 +31,15 @@ export function OrderDetailsCard({ order }: { order: Order }) {
             key={`${item.productId}-${item.sku}`}
             className="flex items-center gap-3"
           >
-            <div className="relative h-14 w-14 overflow-hidden rounded-xl bg-accent">
+            <div className="relative aspect-square h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-accent">
               {item.image ? (
-                <Image src={item.image} alt="" fill className="object-cover" />
+                <Image
+                  src={item.image}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="56px"
+                />
               ) : null}
             </div>
             <div className="min-w-0 flex-1">

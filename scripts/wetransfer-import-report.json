@@ -1,0 +1,373 @@
+{
+  "generatedAt": "2026-10-05T16:40:22.034Z",
+  "source": "C:\\Users\\Administrator\\Downloads\\wetransfer-full-extract",
+  "alreadyLive": [
+    {
+      "category": "Light Your Night",
+      "name": "COBA CB-W518 Flashlight LED Rechargeable Torch 3km big batterys",
+      "price": 8500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "LED Flashlight Torch with Side LED Desk Lamp DP-9035B -",
+      "price": 1000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "LED Foldable Desk Lamp 1300mAh Rechargeable Battery DP-636 -",
+      "price": 2000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model # 776 portable search light with side cobe red flash light nd power bank",
+      "price": 2100,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model # 818 solar plus electric charging search light with side lights",
+      "price": 1800,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model # 938 solar sensor light automatic on off waterproof body also charge with electricity..",
+      "price": 1200,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model # rl 2211 metal flash light 9800 MAH battery 2km light range",
+      "price": 3200,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model # T28 DC 12V power 25W 12v battery oprated cob light metal body",
+      "price": 1200,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model #b067 12 v battery operated power 18 w light",
+      "price": 800,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model #t25 12v power 20w battery oprated 12v metal wall light",
+      "price": 1300,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "model#635 small light with hamer cutter nd magnet",
+      "price": 1400,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "portable keychain charging cob red and white flash light",
+      "price": 500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "Portable LED Emergency Light & Torch DP-707B -",
+      "price": 1500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "Portable LED Rechargeable Flashlight with Built-in Plug DP-9034B",
+      "price": 1200,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "Ruilang P90 Imported LED Torch Light 9600 MAH",
+      "price": 3000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "RuiLang RL-2210 - metal flashlight zoom in zoom out white tube with police light hamer and cutter..",
+      "price": 2300,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "Light Your Night",
+      "name": "Solar Foldable LED Rechargeable Desklamp DP-666T",
+      "price": 3000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Link Durable (L-01ac)",
+      "price": 1000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Link Fast (L-01cc)",
+      "price": 1100,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Power Basic 12 (P-01)",
+      "price": 1299,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Power Flow 30 (P-03)",
+      "price": 2349,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Power Go 20 (P-02)",
+      "price": 1929,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Sound Aura (S-02)",
+      "price": 5799,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Sound Bass (S-01)",
+      "price": 4199,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Sound Glow (S-03)",
+      "price": 5999,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Watch Elite (W-03)",
+      "price": 10500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Watch Go (W-01)",
+      "price": 9999,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "VOCO Premium Accessories",
+      "name": "V-Watch Life (W-02)",
+      "price": 11599,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "3 in 1 Hair Dryers, hair straightener, hair curler And Volumizer for ladies - Hair Straightening Brush for women - Hair Styler - Hair styler brush",
+      "price": 2800,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "Ceramic Glide 230 Remington",
+      "price": 10000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "Hair Epilator KM519A Effortless Hair Removal for Silky Smooth Skin",
+      "price": 2500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "Hair Remover Machine - Rechargeable Instant Painless Facial & Body Hair Remover Epilator for Women, Professional Painless Hair Removal Kit for Bikini Line, Face, Upper Lip, Underarms, Legs -",
+      "price": 1000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "Kemei KM-6331 3-in-1 Super Grooming Kit with USB charging",
+      "price": 2200,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "KM-1291 3 in 1 Hair Straightener –",
+      "price": 3000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "KM-T99 Professional Hair Clipper Precision and Durability in Groomin –",
+      "price": 1800,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "Original Pro Wax Professional 500ml Wax Heater & Warmer Machine Portable Salon-Grade Wax Heater with Adjustable Thermostat, Transparent Lid & Wax Beans Home & Salon Hair Removal —",
+      "price": 1500,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "orignal Remington D3010 Power Dry Hair Dryer 2000W -",
+      "price": 10000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "PIXIE PT05 IPL Hair Removal Device for Women & Men - 999,999 Flashes, 5 Energy Levels, Skin Sensor - At-Home Laser Epilator for Face, Underarms, Legs & Bikini",
+      "price": 13000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "REMINGTON S8500 HAIR STRAIGHTENER SHINE THERAPY",
+      "price": 16000,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "T9 Vintage Hair Trimmer For Men T9 Rechargeable Shaver Machine For Men Professional Hair Trimming Machine Hair Trimmer and Shaver For Boys (Metal Body)",
+      "price": 850,
+      "match": "existing Supabase product"
+    },
+    {
+      "category": "style And care",
+      "name": "VGR V-937 Professional Electric Hair Trimmer Cordless Beard & Hair Clipper For Men Hair Cutter Machine Rechargeable Set",
+      "price": 3200,
+      "match": "existing Supabase product"
+    }
+  ],
+  "inserted": [
+    {
+      "id": "p-lyn-c74771c906",
+      "category": "Light Your Night",
+      "name": "20 watt Charging bulb with 2 big battries",
+      "slug": "20-watt-charging-bulb-with-2-big-battries",
+      "sku": "HE-LYN-20WATTCHAR-94DC46",
+      "price": 999,
+      "images": 7
+    },
+    {
+      "id": "p-lyn-6576da7104",
+      "category": "Light Your Night",
+      "name": "DP 7045 Torch, DP Led Light Portable Rechargeable Search Light LED Spotlight Lighting Ultra Bright Outdoor Portable Hand Held Flashlight Emergency Light For Outdoor Camping Hiking fishing",
+      "slug": "dp-7045-torch-dp-led-light-portable-rechargeable-search-light-led-spot",
+      "sku": "HE-LYN-DP7045TORC-E1794B",
+      "price": 3000,
+      "images": 6
+    },
+    {
+      "id": "p-lyn-483fe24d0b",
+      "category": "Light Your Night",
+      "name": "Keyang multi functional portable search light charge with solar and electricity booth come with little solar plate 3 small bulbs with long cables complete charger 1800mah 6 cell full night battery bakeup ...",
+      "slug": "keyang-multi-functional-portable-search-light-charge-with-solar-and-el",
+      "sku": "HE-LYN-KEYANGMULT-759FF1",
+      "price": 650,
+      "images": 5
+    },
+    {
+      "id": "p-lyn-7cfd53ab7b",
+      "category": "Light Your Night",
+      "name": "LED High Power Rechargeable Searchlight Built-in Charger Water proof DP-7310",
+      "slug": "led-high-power-rechargeable-searchlight-built-in-charger-water-proof-d",
+      "sku": "HE-LYN-LEDHIGHPOW-C56EBD",
+      "price": 2200,
+      "images": 7
+    },
+    {
+      "id": "p-lyn-bea30a36e7",
+      "category": "Light Your Night",
+      "name": "Model # 570 Multi-functional portable searchlight come with stand,belt,charging cable,range 1-2 km power bank digital battery meter zoom in zoom out options ..",
+      "slug": "model-570-multi-functional-portable-searchlight-come-with-standbeltcha",
+      "sku": "HE-LYN-MODEL570MU-59B243",
+      "price": 2800,
+      "images": 5
+    },
+    {
+      "id": "p-lyn-90131dd27d",
+      "category": "Light Your Night",
+      "name": "Model # 580 Multi-functional portable searchlight come with stand,belt,charging cable,range 1-2 km power bank digital battery meter zoom in zoom out options ..",
+      "slug": "model-580-multi-functional-portable-searchlight-come-with-standbeltcha",
+      "sku": "HE-LYN-MODEL580MU-1F7329",
+      "price": 2800,
+      "images": 4
+    },
+    {
+      "id": "p-sl-aee98edeb3",
+      "category": "smart living",
+      "name": "3 Pin Smart Wifi Plug Wall Socket Switch 20A 220v UK Plug back and front universal Power energy monitor Work with tuya smartlife app Alexa Google Home Assistant",
+      "slug": "3-pin-smart-wifi-plug-wall-socket-switch-20a-220v-uk-plug-back-and-fro",
+      "sku": "HE-SL-3PINSMARTW-C3C71D",
+      "price": 2500,
+      "images": 7
+    },
+    {
+      "id": "p-sl-163b0d76c5",
+      "category": "smart living",
+      "name": "Blueidea BLD-780 Fascia Massage Gun 9 Massage Heads 6 Speed Levels Deep Tissue Muscle Massager Rechargeable Portable Massage Gun",
+      "slug": "blueidea-bld-780-fascia-massage-gun-9-massage-heads-6-speed-levels-dee",
+      "sku": "HE-SL-BLUEIDEABL-4C79F7",
+      "price": 3100,
+      "images": 6
+    },
+    {
+      "id": "p-sl-e2d49edd74",
+      "category": "smart living",
+      "name": "Handheld LED Money Detector Currency Detector Ultra Violet Torch Fake Note Checker Portable UV Counterfeit Detection Light",
+      "slug": "handheld-led-money-detector-currency-detector-ultra-violet-torch-fake-",
+      "sku": "HE-SL-HANDHELDLE-38DE3F",
+      "price": 600,
+      "images": 6
+    },
+    {
+      "id": "p-sl-7acebdeda1",
+      "category": "smart living",
+      "name": "Massage Gun 5 in 1 Multifunctional Electric Full Body Massage Equipment Set for Deep Tissue Relief & Full Body Relaxation 6 Speeds with 4 Massage Heads Pysiotherapy Massager Gun",
+      "slug": "massage-gun-5-in-1-multifunctional-electric-full-body-massage-equipmen",
+      "sku": "HE-SL-MASSAGEGUN-E2B15A",
+      "price": 2100,
+      "images": 3
+    },
+    {
+      "id": "p-sl-9e2f54b9fa",
+      "category": "smart living",
+      "name": "Xiaomi 12V Router Power Bank - High Power UPS for WiFi Router, 20000mAh Battery Backup, Plug & Play Easy Connection, Portable Charger for Modem & Cameras",
+      "slug": "xiaomi-12v-router-power-bank-high-power-ups-for-wifi-router-20000mah-b",
+      "sku": "HE-SL-XIAOMI12VR-E11736",
+      "price": 2000,
+      "images": 6
+    }
+  ],
+  "skippedEmpty": [],
+  "skippedNoPrice": [
+    {
+      "category": "Light Your Night",
+      "folder": "Ruilang Multifunctional LED Flashlight_Torch RL233 with cutter hammer strong magnet",
+      "name": "Ruilang Multifunctional LED Flashlight Torch RL233 with cutter hammer strong magnet",
+      "images": 4,
+      "reason": "could not parse PKR price"
+    }
+  ],
+  "failed": [],
+  "liveTotals": {
+    "products": 54,
+    "byCategory": {
+      "cat-light-your-night": 25,
+      "cat-voco-premium": 11,
+      "cat-style-care": 13,
+      "cat-smart-living": 5
+    }
+  }
+}

@@ -105,7 +105,7 @@ export default function AdminProductsPage() {
                 <tr key={p.id} className="border-b border-border/70">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-accent">
+                      <div className="relative aspect-square h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-accent">
                         {image ? (
                           <Image
                             src={image}

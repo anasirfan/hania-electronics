@@ -49,7 +49,7 @@ export function CommerceProductCard({
         className,
       )}
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#F4F6F9] shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)] sm:aspect-[4/5]">
+      <div className="relative aspect-square overflow-hidden bg-[#F4F6F9] shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
         <Link href={`/product/${product.slug}`} className="absolute inset-0">
           {image ? (
             <Image
@@ -57,7 +57,7 @@ export function CommerceProductCard({
               alt={product.name}
               fill
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
-              sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+              sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 400px"
             />
           ) : null}
         </Link>

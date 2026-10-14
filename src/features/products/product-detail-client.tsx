@@ -58,7 +58,7 @@ export function ProductDetailClient({
     <div className="bg-[#FAFBFD]">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-2 md:gap-12 md:px-8 md:py-14">
         <div>
-          <div className="relative aspect-square overflow-hidden rounded-2xl bg-white border border-border">
+          <div className="relative aspect-square max-w-[800px] overflow-hidden rounded-2xl border border-border bg-white">
             {images[active] ? (
               <Image
                 src={images[active].url}
@@ -66,7 +66,7 @@ export function ProductDetailClient({
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width:768px) 100vw, 50vw"
+                sizes="(max-width:768px) 100vw, 800px"
               />
             ) : null}
           </div>

@@ -60,9 +60,15 @@ export function CartDrawer({ products }: { products: Product[] }) {
               const price = getEffectivePrice(product);
               return (
                 <div key={item.productId} className="flex gap-3">
-                  <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-accent">
+                  <div className="relative aspect-square h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-accent">
                     {image ? (
-                      <Image src={image} alt="" fill className="object-cover" />
+                      <Image
+                        src={image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
                     ) : null}
                   </div>
                   <div className="flex flex-1 flex-col">
