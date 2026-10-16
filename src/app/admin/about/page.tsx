@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { toast } from "sonner";
+import Image from "next/image";
 import { Plus, Trash2, ArrowUp, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +11,69 @@ import { Textarea } from "@/components/ui/textarea";
 import { TogglePill } from "@/features/admin/toggle-switch";
 import type { AboutContent } from "@/domain/types";
 
-type ListKey = "stats" | "timeline" | "values" | "network";
+type ListKey = "stats" | "timeline" | "values" | "network" | "banners";
+
+function BannerImageField({
+  label,
+  url,
+  onUploaded,
+}: {
+  label: string;
+  url: string;
+  onUploaded: (url: string) => void;
+}) {
+  const [uploading, setUploading] = React.useState(false);
+
+  async function upload(file: File) {
+    setUploading(true);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      body.append("folder", "about");
+      const res = await fetch("/api/admin/upload", { method: "POST", body });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        toast.error(data.error ?? "Upload failed");
+        return;
+      }
+      onUploaded(data.url as string);
+      toast.success(`${label} uploaded`);
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-center justify-between gap-2">
+        <Label>{label}</Label>
+        <label className="cursor-pointer text-sm font-medium text-primary">
+          {uploading ? "Uploading…" : url ? "Replace" : "Upload"}
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            disabled={uploading}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) void upload(file);
+              e.target.value = "";
+            }}
+          />
+        </label>
+      </div>
+      <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#F4F6F9] shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
+        {url ? (
+          <Image src={url} alt="" fill className="object-cover" sizes="400px" />
+        ) : (
+          <span className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
+            No image yet
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function AdminAboutPage() {
   const [about, setAbout] = React.useState<AboutContent | null>(null);
@@ -176,7 +239,66 @@ export default function AdminAboutPage() {
 
       {/* Hero */}
       <section className={card}>
-        <h2 className={cardTitle}>Hero</h2>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className={cardTitle}>Hero banners</h2>
+            <p className="text-xs text-muted-foreground">
+              Same as the homepage: desktop and mobile images, in the order they
+              should slide. More than one banner rotates automatically.
+            </p>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              addItem("banners", {
+                id: `about-banner-${Date.now()}`,
+                desktopImage: "",
+                mobileImage: "",
+                alt: "",
+              })
+            }
+          >
+            <Plus className="mr-1 h-3.5 w-3.5" /> Add banner
+          </Button>
+        </div>
+        <div className="space-y-3">
+          {a.banners.map((banner, i) => (
+            <div key={banner.id || i} className={`${row} flex items-start gap-3`}>
+              <div className="grid flex-1 gap-3 sm:grid-cols-2">
+                <BannerImageField
+                  label="Desktop image"
+                  url={banner.desktopImage}
+                  onUploaded={(desktopImage) =>
+                    updateItem("banners", i, { desktopImage })
+                  }
+                />
+                <BannerImageField
+                  label="Mobile image"
+                  url={banner.mobileImage}
+                  onUploaded={(mobileImage) =>
+                    updateItem("banners", i, { mobileImage })
+                  }
+                />
+                <div className="space-y-1.5 sm:col-span-2">
+                  <Label>Image description (alt text)</Label>
+                  <Input
+                    placeholder="What the photo shows"
+                    value={banner.alt}
+                    onChange={(e) => updateItem("banners", i, { alt: e.target.value })}
+                  />
+                </div>
+              </div>
+              <RowTools k="banners" i={i} len={a.banners.length} />
+            </div>
+          ))}
+          {a.banners.length === 0 && (
+            <p className="text-sm text-muted-foreground">
+              No banners yet. Add one to show a photo behind the hero text.
+            </p>
+          )}
+        </div>
         {text("heroEyebrow", "Eyebrow (small label)")}
         {text("heroTitle", "Headline", { multiline: true, rows: 2 })}
         {text("heroBody", "Intro paragraph", { multiline: true, rows: 3 })}

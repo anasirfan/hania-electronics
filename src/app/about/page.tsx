@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Reveal } from "@/components/motion/reveal";
-import { CinematicImage } from "@/components/media/cinematic-image";
-import { media } from "@/data/catalog/media";
 import { mediaUrl } from "@/lib/media-url";
+import { AboutHeroMedia } from "@/features/about/about-hero-media";
 import { telUrl } from "@/lib/brand";
 import { whatsappUrlFrom } from "@/lib/site-settings";
 import {
@@ -52,18 +51,9 @@ export default async function AboutPage() {
 
       {/* ── Hero ── */}
       <section className="relative min-h-[75vh] overflow-hidden bg-[#0d1526] text-white">
-        <CinematicImage
-          src={media.hero}
-          alt="Warm pendant light in a quiet bedroom"
-          fill
-          priority
-          grade="warm"
-          containerClassName="absolute inset-0"
-          className="object-[42%_22%]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+        <AboutHeroMedia banners={about.banners} />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
         <Container className="relative flex min-h-[75vh] flex-col justify-end pb-20 pt-32">
           <Reveal variant="fade">
             <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/35">

@@ -1,4 +1,5 @@
 import type { AboutContent } from "@/domain/types";
+import { mediaUrl } from "@/lib/media-url";
 
 export function defaultAboutContent(): AboutContent {
   return {
@@ -9,6 +10,14 @@ export function defaultAboutContent(): AboutContent {
     heroTitle: "Lighting from Karachi\nfor every home.",
     heroBody:
       "Started to solve a problem every Pakistani family knows — what do you do when the grid goes out? We found the answer, and built a brand around it.",
+    banners: [
+      {
+        id: "about-hero",
+        desktopImage: mediaUrl("/scenes/bedroom-warm.webp"),
+        mobileImage: mediaUrl("/scenes/bedroom-warm.webp"),
+        alt: "Warm pendant light in a quiet bedroom",
+      },
+    ],
     stats: [
       { value: "9+", label: "Product lines" },
       { value: "15k+", label: "Customers served" },

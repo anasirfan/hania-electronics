@@ -211,6 +211,14 @@ export interface AboutNetworkCity {
   primary: boolean;
 }
 
+/** Hero slide on the About page. Desktop + mobile, same idea as homepage banners. */
+export interface AboutBanner {
+  id: string;
+  desktopImage: string;
+  mobileImage: string;
+  alt: string;
+}
+
 /** Editable About page copy (Admin → About page) */
 export interface AboutContent {
   metaTitle: string;
@@ -218,6 +226,7 @@ export interface AboutContent {
   heroEyebrow: string;
   heroTitle: string;
   heroBody: string;
+  banners: AboutBanner[];
   stats: AboutStat[];
   storyEyebrow: string;
   storyTitle: string;

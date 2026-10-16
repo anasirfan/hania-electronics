@@ -18,7 +18,12 @@ async function readFromStorage(): Promise<AboutContent | null> {
   if (error || !data) return null;
   try {
     const parsed = JSON.parse(await data.text()) as Partial<AboutContent>;
-    return { ...defaultAboutContent(), ...parsed };
+    const defaults = defaultAboutContent();
+    return {
+      ...defaults,
+      ...parsed,
+      banners: Array.isArray(parsed.banners) ? parsed.banners : defaults.banners,
+    };
   } catch {
     return null;
   }
