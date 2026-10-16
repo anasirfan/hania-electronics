@@ -90,3 +90,4 @@ export function getDataBackend(): "supabase" | "mock" {
 }
 
 export { siteSettingsRepository } from "@/server/repositories/site-settings";
+export { aboutContentRepository } from "@/server/repositories/about-content";

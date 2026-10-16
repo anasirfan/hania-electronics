@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TogglePill } from "@/features/admin/toggle-switch";
 import type { Category } from "@/domain/types";
 
 function slugify(value: string) {
@@ -155,27 +156,17 @@ export default function AdminCategoriesPage() {
             }
           />
         </div>
-        <div className="flex flex-wrap items-end gap-4">
-          <label className="inline-flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={form.active}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, active: e.target.checked }))
-              }
-            />
-            Active
-          </label>
-          <label className="inline-flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={form.featured}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, featured: e.target.checked }))
-              }
-            />
-            Featured
-          </label>
+        <div className="flex flex-wrap items-end gap-2">
+          <TogglePill
+            label="Active"
+            checked={form.active}
+            onChange={(active) => setForm((f) => ({ ...f, active }))}
+          />
+          <TogglePill
+            label="Featured"
+            checked={form.featured}
+            onChange={(featured) => setForm((f) => ({ ...f, featured }))}
+          />
         </div>
         <div className="md:col-span-2">
           <div className="mb-2 flex items-center gap-3">

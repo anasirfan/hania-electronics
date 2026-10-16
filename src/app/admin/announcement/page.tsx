@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TogglePill } from "@/features/admin/toggle-switch";
 import type { AnnouncementBar } from "@/domain/types";
 
 export default function AdminAnnouncementPage() {
@@ -86,14 +87,13 @@ export default function AdminAnnouncementPage() {
             />
           </div>
         </div>
-        <label className="inline-flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
+        <div>
+          <TogglePill
+            label="Active"
             checked={form.active}
-            onChange={(e) => setForm({ ...form, active: e.target.checked })}
+            onChange={(active) => setForm({ ...form, active })}
           />
-          Active
-        </label>
+        </div>
         <div>
           <Button type="submit">Save announcement</Button>
         </div>

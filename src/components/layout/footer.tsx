@@ -67,7 +67,7 @@ export function Footer() {
             <Link href="/" className="inline-flex items-center gap-3">
               <span className="relative h-10 w-10 overflow-hidden rounded-xl bg-white">
                 <Image
-                  src={mediaUrl("/brand/logo-mark-transparent.webp")}
+                  src={mediaUrl("/brand/logo-mark-v2.webp")}
                   alt=""
                   fill
                   className="object-contain p-1.5"

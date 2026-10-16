@@ -140,7 +140,7 @@ export function SplashScreen() {
         }}
       >
         <Image
-          src={mediaUrl("/brand/logo-mark-transparent.webp")}
+          src={mediaUrl("/brand/logo-mark-v2.webp")}
           alt="Hania Electronics"
           fill
           className="object-contain p-4"

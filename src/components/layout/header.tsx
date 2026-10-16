@@ -82,9 +82,9 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
         <Container className="relative">
           <div className="flex h-14 items-center justify-between gap-3 sm:h-[68px] sm:gap-4">
             <Link href="/" className="flex items-center gap-3">
-              <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B1220] p-2">
+              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
                 <Image
-                  src={mediaUrl("/brand/logo-mark-transparent.webp")}
+                  src={mediaUrl("/brand/logo-mark-v2.webp")}
                   alt="Hania Electronics"
                   fill
                   className="object-contain p-1.5"

@@ -189,6 +189,54 @@ export interface SiteSettings {
   updatedAt: string;
 }
 
+export interface AboutStat {
+  value: string;
+  label: string;
+}
+
+export interface AboutTimelineItem {
+  year: string;
+  title: string;
+  body: string;
+}
+
+export interface AboutValue {
+  title: string;
+  body: string;
+}
+
+export interface AboutNetworkCity {
+  city: string;
+  role: string;
+  primary: boolean;
+}
+
+/** Editable About page copy (Admin → About page) */
+export interface AboutContent {
+  metaTitle: string;
+  metaDescription: string;
+  heroEyebrow: string;
+  heroTitle: string;
+  heroBody: string;
+  stats: AboutStat[];
+  storyEyebrow: string;
+  storyTitle: string;
+  storyParagraphs: string[];
+  timelineEyebrow: string;
+  timelineTitle: string;
+  timeline: AboutTimelineItem[];
+  valuesEyebrow: string;
+  valuesTitle: string;
+  values: AboutValue[];
+  reachEyebrow: string;
+  reachTitle: string;
+  reachBody: string;
+  network: AboutNetworkCity[];
+  ctaTitle: string;
+  ctaBody: string;
+  updatedAt: string;
+}
+
 /** Effective selling price */
 export function getEffectivePrice(product: Product): number {
   if (product.salePrice != null && product.salePrice > 0) {

@@ -12,6 +12,7 @@ import {
   ShoppingBag,
   Settings,
   LogOut,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +24,7 @@ const links = [
   { href: "/admin/announcement", label: "Announcement", icon: Megaphone },
   { href: "/admin/homepage", label: "Homepage", icon: Home },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },
+  { href: "/admin/about", label: "About page", icon: BookOpen },
   { href: "/admin/settings", label: "Store settings", icon: Settings },
 ];
 

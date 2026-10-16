@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ToggleSwitch } from "@/features/admin/toggle-switch";
 import type { Category, Product, ProductImage, StockStatus } from "@/domain/types";
 
 function slugify(value: string) {
@@ -441,25 +442,30 @@ export function ProductForm({ productId }: { productId?: string }) {
         </div>
       </section>
 
-      <section className="flex flex-wrap gap-4 rounded-2xl border border-border bg-white p-5 text-sm">
-        {(
-          [
-            ["published", "Published"],
-            ["featured", "Featured"],
-            ["bestSeller", "Popular pick"],
-            ["newArrival", "New arrival"],
-            ["saleBadge", "Sale badge"],
-          ] as const
-        ).map(([key, label]) => (
-          <label key={key} className="inline-flex items-center gap-2">
-            <input
-              type="checkbox"
+      <section className="rounded-2xl border border-border bg-white p-5">
+        <h2 className="font-heading text-lg font-semibold">Visibility & badges</h2>
+        <p className="mb-4 text-xs text-muted-foreground">
+          Toggle where this product appears and which badges it shows.
+        </p>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {(
+            [
+              ["published", "Published", "Visible on the storefront"],
+              ["featured", "Featured", "Eligible for the Featured section"],
+              ["bestSeller", "Top selling", "Shows in Popular picks / best sellers"],
+              ["newArrival", "New arrival", "Shows NEW badge & New arrivals row"],
+              ["saleBadge", "Sale badge", "Shows SALE badge on the card"],
+            ] as const
+          ).map(([key, label, hint]) => (
+            <ToggleSwitch
+              key={key}
+              label={label}
+              hint={hint}
               checked={form[key]}
-              onChange={(e) => set(key, e.target.checked)}
+              onChange={(v) => set(key, v)}
             />
-            {label}
-          </label>
-        ))}
+          ))}
+        </div>
       </section>
     </form>
   );

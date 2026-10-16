@@ -17,6 +17,8 @@ import { mediaUrl } from "@/lib/media-url";
 import { whatsappUrlFrom } from "@/lib/site-settings";
 import { siteSettingsRepository } from "@/server/repositories";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Contact — HANIA Electronics",
   description:

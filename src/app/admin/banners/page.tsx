@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { TogglePill } from "@/features/admin/toggle-switch";
 import type { Banner } from "@/domain/types";
 
 const blank = {
@@ -161,16 +162,11 @@ export default function AdminBannersPage() {
           />
         </div>
         <div className="flex items-end gap-4">
-          <label className="inline-flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={form.active}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, active: e.target.checked }))
-              }
-            />
-            Active
-          </label>
+          <TogglePill
+            label="Active"
+            checked={form.active}
+            onChange={(active) => setForm((f) => ({ ...f, active }))}
+          />
         </div>
         <div className="space-y-2">
           <Label>Start date</Label>
