@@ -6,7 +6,15 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { AboutBanner } from "@/domain/types";
 import { cn } from "@/lib/utils";
 
-export function AboutHeroMedia({ banners }: { banners: AboutBanner[] }) {
+export function AboutHeroMedia({
+  banners,
+  desktopClassName = "cinematic-grade hidden object-cover object-[42%_22%] md:block",
+  mobileClassName = "cinematic-grade object-cover object-[center_30%] md:hidden",
+}: {
+  banners: AboutBanner[];
+  desktopClassName?: string;
+  mobileClassName?: string;
+}) {
   const slides = banners.filter((b) => b.desktopImage);
   const loop = slides.length > 1;
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop, dragFree: false });
@@ -37,7 +45,7 @@ export function AboutHeroMedia({ banners }: { banners: AboutBanner[] }) {
                 alt={banner.alt || ""}
                 fill
                 priority={i === 0}
-                className="cinematic-grade hidden object-cover object-[42%_22%] md:block"
+                className={desktopClassName}
                 sizes="100vw"
               />
               <Image
@@ -45,7 +53,7 @@ export function AboutHeroMedia({ banners }: { banners: AboutBanner[] }) {
                 alt={banner.alt || ""}
                 fill
                 priority={i === 0}
-                className="cinematic-grade object-cover object-[center_30%] md:hidden"
+                className={mobileClassName}
                 sizes="100vw"
               />
               <div aria-hidden className="cinematic-overlay-warm pointer-events-none absolute inset-0" />

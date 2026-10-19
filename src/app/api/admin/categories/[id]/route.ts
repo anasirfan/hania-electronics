@@ -1,6 +1,9 @@
 import { requireAdmin } from "@/server/api/require-admin";
 import { jsonError, jsonOk, parseJson } from "@/server/api/http";
-import { categoryRepository } from "@/server/repositories";
+import {
+  categoryBannersRepository,
+  categoryRepository,
+} from "@/server/repositories";
 import type { Category } from "@/domain/types";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -30,5 +33,6 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   const { id } = await ctx.params;
   const ok = await categoryRepository.delete(id);
   if (!ok) return jsonError("Not found", 404);
+  await categoryBannersRepository.remove(id).catch(() => undefined);
   return jsonOk({ ok: true });
 }

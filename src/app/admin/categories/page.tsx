@@ -3,11 +3,12 @@
 import * as React from "react";
 import Image from "next/image";
 import { toast } from "sonner";
+import { ArrowDown, ArrowUp, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TogglePill } from "@/features/admin/toggle-switch";
-import type { Category } from "@/domain/types";
+import type { AboutBanner, Category } from "@/domain/types";
 
 function slugify(value: string) {
   return value
@@ -26,15 +27,43 @@ const blank = {
   active: true,
 };
 
+function emptyBanner(): AboutBanner {
+  return {
+    id: `cat-banner-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    desktopImage: "",
+    mobileImage: "",
+    alt: "",
+  };
+}
+
+async function uploadBannerFile(file: File) {
+  const body = new FormData();
+  body.append("file", file);
+  body.append("folder", "categories");
+  const res = await fetch("/api/admin/upload", { method: "POST", body });
+  const data = await res.json();
+  if (!res.ok || !data.url) throw new Error(data.error ?? "Upload failed");
+  return data.url as string;
+}
+
 export default function AdminCategoriesPage() {
   const [categories, setCategories] = React.useState<Category[]>([]);
+  const [bannersByCategory, setBannersByCategory] = React.useState<
+    Record<string, AboutBanner[]>
+  >({});
   const [form, setForm] = React.useState(blank);
+  const [banners, setBanners] = React.useState<AboutBanner[]>([]);
   const [editingId, setEditingId] = React.useState<string | null>(null);
 
   const load = React.useCallback(async () => {
-    const res = await fetch("/api/admin/categories");
-    const data = await res.json();
+    const [catRes, bannerRes] = await Promise.all([
+      fetch("/api/admin/categories"),
+      fetch("/api/admin/category-banners"),
+    ]);
+    const data = await catRes.json();
+    const bannerData = await bannerRes.json();
     setCategories(data.categories ?? []);
+    setBannersByCategory(bannerData.banners ?? {});
   }, []);
 
   React.useEffect(() => {
@@ -54,6 +83,22 @@ export default function AdminCategoriesPage() {
     setForm((f) => ({ ...f, image: data.url }));
   }
 
+  function bannersFor(c: Category): AboutBanner[] {
+    const saved = bannersByCategory[c.id];
+    if (saved && saved.length > 0) return saved.map((b) => ({ ...b }));
+    if (c.image) {
+      return [
+        {
+          id: `${c.id}-image`,
+          desktopImage: c.image,
+          mobileImage: c.image,
+          alt: c.name,
+        },
+      ];
+    }
+    return [];
+  }
+
   function startEdit(c: Category) {
     setEditingId(c.id);
     setForm({
@@ -65,11 +110,13 @@ export default function AdminCategoriesPage() {
       sortOrder: c.sortOrder,
       active: c.active,
     });
+    setBanners(bannersFor(c));
   }
 
   function reset() {
     setEditingId(null);
     setForm(blank);
+    setBanners([]);
   }
 
   async function save(e: React.FormEvent) {
@@ -89,6 +136,23 @@ export default function AdminCategoriesPage() {
     if (!res.ok) {
       toast.error("Save failed");
       return;
+    }
+    const saved = await res.json();
+    const categoryId = (saved.category?.id as string | undefined) ?? editingId;
+    if (categoryId) {
+      const bannerRes = await fetch("/api/admin/category-banners", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          categoryId,
+          banners: banners.filter((b) => b.desktopImage),
+        }),
+      });
+      if (!bannerRes.ok) {
+        toast.error("Category saved, but the banner did not save");
+        void load();
+        return;
+      }
     }
     toast.success(editingId ? "Category updated" : "Category created");
     reset();
@@ -170,7 +234,7 @@ export default function AdminCategoriesPage() {
         </div>
         <div className="md:col-span-2">
           <div className="mb-2 flex items-center gap-3">
-            <Label>Image</Label>
+            <Label>Card image</Label>
             <label className="cursor-pointer text-sm text-primary">
               Upload
               <input
@@ -189,6 +253,146 @@ export default function AdminCategoriesPage() {
               <Image src={form.image} alt="" fill className="object-cover" />
             </div>
           ) : null}
+        </div>
+        <div className="space-y-3 md:col-span-2">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <Label>Category page banner</Label>
+              <p className="text-xs text-muted-foreground">
+                Shown at the top of this category, like the homepage and About
+                heroes. Desktop and mobile can be different. Add more than one
+                to rotate them.
+              </p>
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setBanners((list) => [...list, emptyBanner()])}
+            >
+              <Plus className="mr-1 h-3.5 w-3.5" /> Add banner
+            </Button>
+          </div>
+          {banners.length === 0 ? (
+            <p className="text-sm text-muted-foreground">
+              No banner yet. The card image is used until you upload one.
+            </p>
+          ) : (
+            banners.map((banner, index) => (
+              <div
+                key={banner.id}
+                className="grid gap-3 rounded-xl border border-border bg-[#F8FAFC] p-3 sm:grid-cols-2"
+              >
+                {(
+                  [
+                    ["desktopImage", "Desktop"],
+                    ["mobileImage", "Mobile"],
+                  ] as const
+                ).map(([field, label]) => (
+                  <div key={field} className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium">{label}</span>
+                      <label className="cursor-pointer text-xs font-medium text-primary">
+                        {banner[field] ? "Replace" : "Upload"}
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            e.target.value = "";
+                            if (!file) return;
+                            void uploadBannerFile(file)
+                              .then((url) => {
+                                setBanners((list) =>
+                                  list.map((b, i) =>
+                                    i === index ? { ...b, [field]: url } : b,
+                                  ),
+                                );
+                                toast.success(`${label} uploaded`);
+                              })
+                              .catch(() => toast.error("Upload failed"));
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <div className="relative aspect-[16/7] overflow-hidden rounded-lg bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
+                      {banner[field] ? (
+                        <Image
+                          src={banner[field]}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="320px"
+                        />
+                      ) : (
+                        <span className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
+                          No image
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+                <div className="flex items-center gap-2 sm:col-span-2">
+                  <Input
+                    placeholder="Image description"
+                    value={banner.alt}
+                    onChange={(e) =>
+                      setBanners((list) =>
+                        list.map((b, i) =>
+                          i === index ? { ...b, alt: e.target.value } : b,
+                        ),
+                      )
+                    }
+                  />
+                  <button
+                    type="button"
+                    className="rounded-md p-2 text-muted-foreground hover:bg-white disabled:opacity-30"
+                    disabled={index === 0}
+                    onClick={() =>
+                      setBanners((list) => {
+                        const next = [...list];
+                        const tmp = next[index - 1];
+                        next[index - 1] = next[index];
+                        next[index] = tmp;
+                        return next;
+                      })
+                    }
+                    aria-label="Move up"
+                  >
+                    <ArrowUp className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-md p-2 text-muted-foreground hover:bg-white disabled:opacity-30"
+                    disabled={index === banners.length - 1}
+                    onClick={() =>
+                      setBanners((list) => {
+                        const next = [...list];
+                        const tmp = next[index + 1];
+                        next[index + 1] = next[index];
+                        next[index] = tmp;
+                        return next;
+                      })
+                    }
+                    aria-label="Move down"
+                  >
+                    <ArrowDown className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-md p-2 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                    onClick={() =>
+                      setBanners((list) => list.filter((_, i) => i !== index))
+                    }
+                    aria-label="Remove banner"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
         <div className="flex gap-2 md:col-span-2">
           <Button type="submit">

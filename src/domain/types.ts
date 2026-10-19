@@ -211,7 +211,7 @@ export interface AboutNetworkCity {
   primary: boolean;
 }
 
-/** Hero slide on the About page. Desktop + mobile, same idea as homepage banners. */
+/** Desktop + mobile slide used by About and category page heroes. */
 export interface AboutBanner {
   id: string;
   desktopImage: string;
