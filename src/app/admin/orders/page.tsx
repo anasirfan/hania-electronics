@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { toast } from "sonner";
 import { formatPKR } from "@/lib/money";
 import type { Order } from "@/domain/types";
 
@@ -14,6 +15,19 @@ export default function AdminOrdersPage() {
       .then((r) => r.json())
       .then((d) => setOrders(d.orders ?? []));
   }, []);
+
+  async function remove(order: Order) {
+    if (!confirm(`Delete order ${order.orderNumber}? This cannot be undone.`)) {
+      return;
+    }
+    const res = await fetch(`/api/admin/orders/${order.id}`, { method: "DELETE" });
+    if (!res.ok) {
+      toast.error("Delete failed");
+      return;
+    }
+    setOrders((list) => list.filter((o) => o.id !== order.id));
+    toast.success("Order deleted");
+  }
 
   const filtered = orders.filter(
     (o) =>
@@ -47,6 +61,7 @@ export default function AdminOrdersPage() {
               <th className="px-4 py-3">Total</th>
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Date</th>
+              <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -70,6 +85,15 @@ export default function AdminOrdersPage() {
                 <td className="px-4 py-3 capitalize">{o.status}</td>
                 <td className="px-4 py-3 text-muted-foreground">
                   {new Date(o.createdAt).toLocaleDateString("en-PK")}
+                </td>
+                <td className="px-4 py-3">
+                  <button
+                    type="button"
+                    className="text-sm font-medium text-destructive"
+                    onClick={() => void remove(o)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

@@ -317,4 +317,14 @@ export const mockOrderRepository = {
     });
     return updated;
   },
+  async delete(id: string): Promise<boolean> {
+    let ok = false;
+    await updateStore((s) => {
+      const before = s.orders.length;
+      s.orders = s.orders.filter((o) => o.id !== id);
+      ok = s.orders.length < before;
+      return s;
+    });
+    return ok;
+  },
 };

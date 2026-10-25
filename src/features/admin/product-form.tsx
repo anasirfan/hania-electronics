@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ToggleSwitch } from "@/features/admin/toggle-switch";
+import { MediaLibraryButton } from "@/features/admin/media-browser";
 import type { Category, Product, ProductImage, StockStatus } from "@/domain/types";
 
 function slugify(value: string) {
@@ -116,6 +117,18 @@ export function ProductForm({ productId }: { productId?: string }) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function addImageUrl(url: string) {
+    setForm((prev) => {
+      const image: ProductImage = {
+        id: `img-${Date.now()}`,
+        url,
+        sortOrder: prev.images.length,
+        isPrimary: prev.images.length === 0,
+      };
+      return { ...prev, images: [...prev.images, image] };
+    });
+  }
+
   async function uploadImage(file: File) {
     const body = new FormData();
     body.append("file", file);
@@ -126,13 +139,7 @@ export function ProductForm({ productId }: { productId?: string }) {
       return;
     }
     const data = await res.json();
-    const image: ProductImage = {
-      id: `img-${Date.now()}`,
-      url: data.url,
-      sortOrder: form.images.length,
-      isPrimary: form.images.length === 0,
-    };
-    set("images", [...form.images, image]);
+    addImageUrl(data.url as string);
   }
 
   function setPrimary(id: string) {
@@ -367,19 +374,22 @@ export function ProductForm({ productId }: { productId?: string }) {
       <section className="rounded-2xl border border-border bg-white p-5">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-heading text-lg font-semibold">Images</h2>
-          <label className="cursor-pointer text-sm font-medium text-primary">
-            Upload
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) void uploadImage(file);
-                e.target.value = "";
-              }}
-            />
-          </label>
+          <div className="flex items-center gap-3">
+            <label className="cursor-pointer text-sm font-medium text-primary">
+              Upload
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) void uploadImage(file);
+                  e.target.value = "";
+                }}
+              />
+            </label>
+            <MediaLibraryButton onSelect={addImageUrl} />
+          </div>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {form.images.map((img, index) => (

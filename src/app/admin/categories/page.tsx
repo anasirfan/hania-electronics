@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TogglePill } from "@/features/admin/toggle-switch";
+import { MediaLibraryButton } from "@/features/admin/media-browser";
 import type { AboutBanner, Category } from "@/domain/types";
 
 function slugify(value: string) {
@@ -247,6 +248,9 @@ export default function AdminCategoriesPage() {
                 }}
               />
             </label>
+            <MediaLibraryButton
+              onSelect={(url) => setForm((f) => ({ ...f, image: url }))}
+            />
           </div>
           {form.image ? (
             <div className="relative h-28 w-40 overflow-hidden rounded-xl bg-accent">
@@ -292,29 +296,41 @@ export default function AdminCategoriesPage() {
                   <div key={field} className="space-y-1.5">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-medium">{label}</span>
-                      <label className="cursor-pointer text-xs font-medium text-primary">
-                        {banner[field] ? "Replace" : "Upload"}
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            e.target.value = "";
-                            if (!file) return;
-                            void uploadBannerFile(file)
-                              .then((url) => {
-                                setBanners((list) =>
-                                  list.map((b, i) =>
-                                    i === index ? { ...b, [field]: url } : b,
-                                  ),
-                                );
-                                toast.success(`${label} uploaded`);
-                              })
-                              .catch(() => toast.error("Upload failed"));
-                          }}
+                      <div className="flex items-center gap-2">
+                        <label className="cursor-pointer text-xs font-medium text-primary">
+                          {banner[field] ? "Replace" : "Upload"}
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              e.target.value = "";
+                              if (!file) return;
+                              void uploadBannerFile(file)
+                                .then((url) => {
+                                  setBanners((list) =>
+                                    list.map((b, i) =>
+                                      i === index ? { ...b, [field]: url } : b,
+                                    ),
+                                  );
+                                  toast.success(`${label} uploaded`);
+                                })
+                                .catch(() => toast.error("Upload failed"));
+                            }}
+                          />
+                        </label>
+                        <MediaLibraryButton
+                          label="Library"
+                          onSelect={(url) =>
+                            setBanners((list) =>
+                              list.map((b, i) =>
+                                i === index ? { ...b, [field]: url } : b,
+                              ),
+                            )
+                          }
                         />
-                      </label>
+                      </div>
                     </div>
                     <div className="relative aspect-[16/7] overflow-hidden rounded-lg bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
                       {banner[field] ? (

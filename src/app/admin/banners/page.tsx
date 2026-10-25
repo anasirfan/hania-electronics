@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TogglePill } from "@/features/admin/toggle-switch";
+import { MediaLibraryButton } from "@/features/admin/media-browser";
 import type { Banner } from "@/domain/types";
 
 const blank = {
@@ -215,6 +216,9 @@ export default function AdminBannersPage() {
                   }}
                 />
               </label>
+              <MediaLibraryButton
+                onSelect={(url) => setForm((f) => ({ ...f, [field]: url }))}
+              />
             </div>
             {form[field] ? (
               <div className="relative h-28 w-full overflow-hidden rounded-xl bg-accent">

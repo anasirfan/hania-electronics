@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { TogglePill } from "@/features/admin/toggle-switch";
+import { MediaLibraryButton } from "@/features/admin/media-browser";
 import type { AboutContent } from "@/domain/types";
 
 type ListKey = "stats" | "timeline" | "values" | "network" | "banners";
@@ -47,20 +48,23 @@ function BannerImageField({
     <div className="space-y-1.5">
       <div className="flex items-center justify-between gap-2">
         <Label>{label}</Label>
-        <label className="cursor-pointer text-sm font-medium text-primary">
-          {uploading ? "Uploading…" : url ? "Replace" : "Upload"}
-          <input
-            type="file"
-            accept="image/*"
-            className="hidden"
-            disabled={uploading}
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) void upload(file);
-              e.target.value = "";
-            }}
-          />
-        </label>
+        <div className="flex items-center gap-3">
+          <label className="cursor-pointer text-sm font-medium text-primary">
+            {uploading ? "Uploading…" : url ? "Replace" : "Upload"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              disabled={uploading}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) void upload(file);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          <MediaLibraryButton onSelect={onUploaded} />
+        </div>
       </div>
       <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-[#F4F6F9] shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
         {url ? (

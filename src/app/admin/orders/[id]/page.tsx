@@ -3,6 +3,7 @@
 import * as React from "react";
 import { use } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { formatPKR } from "@/lib/money";
@@ -23,6 +24,7 @@ export default function AdminOrderDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const router = useRouter();
   const [order, setOrder] = React.useState<Order | null>(null);
 
   React.useEffect(() => {
@@ -44,6 +46,21 @@ export default function AdminOrderDetailPage({
     const data = await res.json();
     setOrder(data.order);
     toast.success("Status updated");
+  }
+
+  async function remove() {
+    if (!order) return;
+    if (!confirm(`Delete order ${order.orderNumber}? This cannot be undone.`)) {
+      return;
+    }
+    const res = await fetch(`/api/admin/orders/${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      toast.error("Delete failed");
+      return;
+    }
+    toast.success("Order deleted");
+    router.push("/admin/orders");
+    router.refresh();
   }
 
   if (!order) {
@@ -76,6 +93,9 @@ export default function AdminOrderDetailPage({
           </select>
           <Button variant="outline" onClick={() => window.print()}>
             Print invoice
+          </Button>
+          <Button variant="outline" className="text-destructive" onClick={() => void remove()}>
+            Delete order
           </Button>
         </div>
       </div>

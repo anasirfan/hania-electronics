@@ -13,6 +13,7 @@ import {
   Settings,
   LogOut,
   BookOpen,
+  Library,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +22,7 @@ const links = [
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
   { href: "/admin/banners", label: "Banners", icon: ImageIcon },
+  { href: "/admin/media", label: "Media library", icon: Library },
   { href: "/admin/announcement", label: "Announcement", icon: Megaphone },
   { href: "/admin/homepage", label: "Homepage", icon: Home },
   { href: "/admin/orders", label: "Orders", icon: ShoppingBag },

@@ -23,3 +23,12 @@ export async function PATCH(req: Request, ctx: Ctx) {
   if (!order) return jsonError("Not found", 404);
   return jsonOk({ order });
 }
+
+export async function DELETE(_req: Request, ctx: Ctx) {
+  const { error } = await requireAdmin();
+  if (error) return error;
+  const { id } = await ctx.params;
+  const ok = await orderRepository.delete(id);
+  if (!ok) return jsonError("Not found", 404);
+  return jsonOk({ ok: true });
+}

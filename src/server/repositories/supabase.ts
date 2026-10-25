@@ -474,4 +474,13 @@ export const supabaseOrderRepository = {
     if (error) throwDb(error, "orders.updateStatus");
     return mapOrder(data);
   },
+  async delete(id: string): Promise<boolean> {
+    const sb = createServiceSupabase();
+    const { error, count } = await sb
+      .from("orders")
+      .delete({ count: "exact" })
+      .eq("id", id);
+    if (error) throwDb(error, "orders.delete");
+    return (count ?? 0) > 0;
+  },
 };
