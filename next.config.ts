@@ -2,9 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Local static assets — skip /_next/image optimizer (Turbopack/Windows
-    // was returning null for valid JPG/WebP and breaking the storefront).
-    unoptimized: true,
+    // Optimizer stays off in local dev (Turbopack on Windows was returning
+    // null for valid images). Production resizes the originals — some
+    // banners are 4MB+ JPGs and were being sent to phones at full size.
+    unoptimized: process.env.NODE_ENV !== "production",
     remotePatterns: [
       {
         protocol: "https",

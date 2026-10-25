@@ -157,6 +157,8 @@ export function MarketingBannerSection({
               src={image}
               alt=""
               fill
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 1200px"
               className="object-cover opacity-40"
             />
           ) : null}

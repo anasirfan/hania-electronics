@@ -39,6 +39,7 @@ export function ShopCatalog({
   const onSale = searchParams.get("sale") === "1";
   const featured = searchParams.get("featured") === "1";
   const sort = (searchParams.get("sort") as SortKey) || "featured";
+  const [visible, setVisible] = React.useState(12);
 
   function updateParams(patch: Record<string, string | null>) {
     const next = new URLSearchParams(searchParams.toString());
@@ -63,6 +64,10 @@ export function ShopCatalog({
       (p) => p.salePrice != null && p.salePrice > 0,
     );
   if (featured) filtered = filtered.filter((p) => p.featured);
+
+  React.useEffect(() => {
+    setVisible(12);
+  }, [activeCategorySlug, min, max, inStock, onSale, featured, sort]);
 
   filtered.sort((a, b) => {
     switch (sort) {
@@ -198,10 +203,21 @@ export function ShopCatalog({
         </div>
 
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
-          {filtered.map((p) => (
-            <CommerceProductCard key={p.id} product={p} />
+          {filtered.slice(0, visible).map((p, i) => (
+            <CommerceProductCard key={p.id} product={p} priority={i < 2} />
           ))}
         </div>
+        {visible < filtered.length ? (
+          <div className="mt-8 flex justify-center">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setVisible((n) => n + 12)}
+            >
+              Show more ({filtered.length - visible} left)
+            </Button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

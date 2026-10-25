@@ -39,7 +39,7 @@ export function AnnouncementBar({
 
   return (
     <div
-      className="relative z-[60] overflow-hidden py-2.5"
+      className="relative z-[60] w-full max-w-full overflow-hidden py-2.5"
       style={{
         backgroundColor: announcement.backgroundColor,
         color: announcement.textColor,

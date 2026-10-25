@@ -30,9 +30,11 @@ function badges(product: Product) {
 export function CommerceProductCard({
   product,
   className,
+  priority = false,
 }: {
   product: Product;
   className?: string;
+  priority?: boolean;
 }) {
   const { addItem } = useCart();
   const wishlist = useWishlist();
@@ -56,6 +58,8 @@ export function CommerceProductCard({
               src={image}
               alt={product.name}
               fill
+              priority={priority}
+              loading={priority ? "eager" : "lazy"}
               className="object-cover transition duration-500 group-hover:scale-[1.04]"
               sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 400px"
             />

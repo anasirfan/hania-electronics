@@ -80,9 +80,9 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
         )}
       >
         <Container className="relative">
-          <div className="flex h-14 items-center justify-between gap-3 sm:h-[68px] sm:gap-4">
-            <Link href="/" className="flex items-center gap-3">
-              <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
+          <div className="flex h-14 min-w-0 items-center justify-between gap-2 sm:h-[68px] sm:gap-4">
+            <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+              <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
                 <Image
                   src={mediaUrl("/brand/logo-mark-v2.webp")}
                   alt="Hania Electronics"
@@ -91,9 +91,9 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
                   priority
                 />
               </span>
-              <span className="font-heading text-[15px] font-semibold tracking-[-0.02em] sm:text-base">
+              <span className="truncate font-heading text-[15px] font-semibold tracking-[-0.02em] sm:text-base">
                 HANIA
-                <span className="ml-1.5 font-normal text-muted-foreground">
+                <span className="ml-1.5 hidden font-normal text-muted-foreground min-[400px]:inline">
                   Electronics
                 </span>
               </span>
@@ -133,7 +133,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
               ))}
             </nav>
 
-            <div className="flex items-center gap-1 sm:gap-1.5">
+            <div className="flex shrink-0 items-center gap-0.5 sm:gap-1.5">
               <button
                 onClick={() => setSearchOpen(true)}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 hover:bg-black/6"
