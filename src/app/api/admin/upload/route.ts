@@ -1,6 +1,7 @@
 import { requireAdmin } from "@/server/api/require-admin";
 import { jsonError, jsonOk } from "@/server/api/http";
 import { imageStorage } from "@/server/storage/image-storage";
+import { invalidateMediaLibraryCache } from "@/server/storage/media-library";
 
 export async function POST(req: Request) {
   const { error } = await requireAdmin();
@@ -16,5 +17,6 @@ export async function POST(req: Request) {
 
   const buffer = Buffer.from(await file.arrayBuffer());
   const uploaded = await imageStorage.upload(buffer, folder, file.name);
+  invalidateMediaLibraryCache();
   return jsonOk(uploaded, { status: 201 });
 }

@@ -10,8 +10,9 @@ export default function AdminMediaPage() {
           Media library
         </h1>
         <p className="text-sm text-muted-foreground">
-          Every image in storage. Download a file, resize it, then upload the
-          smaller version and use it on banners, products, or categories.
+          Thumbnails load a page at a time as you scroll, the same way a
+          WordPress media library does. Download a large file, resize it, then
+          upload the smaller version.
         </p>
       </div>
       <MediaBrowser />

@@ -65,11 +65,12 @@ async function listPrefix(prefix: string): Promise<Listed[]> {
 async function walk(prefix: string, out: MediaFile[]): Promise<void> {
   if (prefix === "config" || prefix.startsWith("config/")) return;
   const items = await listPrefix(prefix);
+  const folders: string[] = [];
   for (const item of items) {
     if (!item.name || item.name.startsWith(".")) continue;
     const key = prefix ? `${prefix}/${item.name}` : item.name;
     if (isFolder(item)) {
-      await walk(key, out);
+      folders.push(key);
       continue;
     }
     const ext = item.name.split(".").pop()?.toLowerCase() ?? "";
@@ -77,19 +78,29 @@ async function walk(prefix: string, out: MediaFile[]): Promise<void> {
     out.push({
       key,
       name: item.name,
-      folder: prefix || "root",
+      folder: key.split("/")[0] || "root",
       size: item.metadata?.size ?? 0,
       updatedAt: item.updated_at ?? item.created_at ?? "",
       url: publicUrl(key),
     });
   }
+  await Promise.all(folders.map((folder) => walk(folder, out)));
+}
+
+let cache: { at: number; files: MediaFile[] } | null = null;
+const CACHE_MS = 60_000;
+
+export function invalidateMediaLibraryCache(): void {
+  cache = null;
 }
 
 export async function listMediaLibrary(): Promise<MediaFile[]> {
   if (!isSupabaseConfigured()) return [];
+  if (cache && Date.now() - cache.at < CACHE_MS) return cache.files;
   const files: MediaFile[] = [];
   await walk("", files);
   files.sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+  cache = { at: Date.now(), files };
   return files;
 }
 
