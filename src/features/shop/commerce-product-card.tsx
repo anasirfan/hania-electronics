@@ -47,7 +47,7 @@ export function CommerceProductCard({
   return (
     <article
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-xl border border-border/80 bg-white shadow-[0_1px_2px_rgba(11,18,32,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_12px_28px_rgba(11,18,32,0.08)] sm:rounded-2xl",
+        "group flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-border/80 bg-white shadow-[0_1px_2px_rgba(11,18,32,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-[0_12px_28px_rgba(11,18,32,0.08)] sm:rounded-2xl",
         className,
       )}
     >
@@ -112,7 +112,7 @@ export function CommerceProductCard({
       <div className="flex flex-1 flex-col gap-2.5 p-2.5 sm:gap-3 sm:p-4">
         <div className="flex-1">
           <Link href={`/product/${product.slug}`}>
-            <h3 className="font-heading text-[13px] font-semibold leading-snug tracking-tight line-clamp-2 hover:text-primary sm:text-[15px]">
+            <h3 className="break-words font-heading text-[13px] font-semibold leading-snug tracking-tight line-clamp-2 hover:text-primary sm:text-[15px]">
               {product.name}
             </h3>
           </Link>
@@ -122,7 +122,7 @@ export function CommerceProductCard({
         </div>
         <div className="flex items-end justify-between gap-2">
           <div className="min-w-0">
-            <p className="font-heading text-[15px] font-semibold text-[#0B1220] sm:text-lg">
+            <p className="truncate font-heading text-[15px] font-semibold text-[#0B1220] sm:text-lg">
               {formatPKR(price)}
             </p>
             {compare ? (

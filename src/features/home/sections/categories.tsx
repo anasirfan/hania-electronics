@@ -26,13 +26,13 @@ export function CategoriesSection() {
         </div>
       </Container>
 
-      <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:px-6 lg:px-10">
+      <div className="flex w-full max-w-full snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-4 sm:gap-4 sm:px-6 lg:px-10">
         {categories.map((cat, i) => (
           <Reveal
             key={cat.id}
             variant="scale"
             delay={i * 0.05}
-            className="w-[240px] shrink-0 snap-start sm:w-[280px]"
+            className="w-[72%] max-w-64 shrink-0 snap-start sm:w-72"
           >
             <Link
               href={`/shop/${cat.slug}`}

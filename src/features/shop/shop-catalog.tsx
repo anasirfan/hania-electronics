@@ -165,7 +165,7 @@ export function ShopCatalog({
   );
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
+    <div className="grid w-full min-w-0 gap-8 lg:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
       <aside className="hidden lg:block">{Filters}</aside>
 
       <div>
@@ -202,7 +202,7 @@ export function ShopCatalog({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-3 md:gap-5 xl:grid-cols-4">
           {filtered.slice(0, visible).map((p, i) => (
             <CommerceProductCard key={p.id} product={p} priority={i < 2} />
           ))}

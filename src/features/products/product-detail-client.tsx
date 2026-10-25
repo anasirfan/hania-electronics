@@ -56,9 +56,9 @@ export function ProductDetailClient({
 
   return (
     <div className="bg-[#FAFBFD]">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-2 md:gap-12 md:px-8 md:py-14">
-        <div>
-          <div className="relative aspect-square max-w-[800px] overflow-hidden rounded-2xl border border-border bg-white">
+      <div className="mx-auto grid w-full min-w-0 max-w-6xl gap-8 px-4 py-8 pb-28 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 md:py-14 md:pb-14">
+        <div className="min-w-0">
+          <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-border bg-white">
             {images[active] ? (
               <Image
                 src={images[active].url}
@@ -66,12 +66,12 @@ export function ProductDetailClient({
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width:768px) 100vw, 800px"
+                sizes="(max-width:768px) 100%, 50vw"
               />
             ) : null}
           </div>
           {images.length > 1 ? (
-            <div className="mt-3 flex gap-2 overflow-x-auto">
+            <div className="mt-3 flex w-full max-w-full gap-2 overflow-x-auto">
               {images.map((img, i) => (
                 <button
                   key={img.id}
@@ -89,8 +89,8 @@ export function ProductDetailClient({
           ) : null}
         </div>
 
-        <div>
-          <nav className="mb-4 text-xs text-muted-foreground">
+        <div className="min-w-0">
+          <nav className="mb-4 break-words text-xs text-muted-foreground">
             <Link href="/" className="hover:text-primary">
               Home
             </Link>
@@ -102,17 +102,17 @@ export function ProductDetailClient({
             <span className="text-foreground">{product.name}</span>
           </nav>
 
-          <h1 className="font-heading text-3xl font-semibold tracking-tight md:text-4xl">
+          <h1 className="break-words font-heading text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
             {product.name}
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-2 break-all text-sm text-muted-foreground">
             SKU: {product.sku}
           </p>
-          <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+          <p className="mt-4 break-words text-sm leading-relaxed text-foreground/80">
             {product.shortDescription}
           </p>
 
-          <div className="mt-6 flex items-end gap-3">
+          <div className="mt-6 flex flex-wrap items-end gap-x-3 gap-y-1">
             <p className="font-heading text-3xl font-semibold">
               {formatPKR(price)}
             </p>
@@ -210,7 +210,7 @@ export function ProductDetailClient({
           {product.features.length ? (
             <ul className="mt-8 space-y-2 text-sm">
               {product.features.map((f) => (
-                <li key={f} className="flex gap-2">
+                <li key={f} className="flex min-w-0 gap-2 break-words">
                   <span className="text-primary">•</span>
                   {f}
                 </li>
@@ -225,9 +225,9 @@ export function ProductDetailClient({
           {Object.keys(product.specifications).length ? (
             <dl className="mt-8 grid gap-2 rounded-2xl border border-border bg-white p-4 text-sm sm:grid-cols-2">
               {Object.entries(product.specifications).map(([k, v]) => (
-                <div key={k} className="flex justify-between gap-4 border-b border-border/60 py-2">
-                  <dt className="text-muted-foreground">{k}</dt>
-                  <dd className="font-medium">{v}</dd>
+                <div key={k} className="grid min-w-0 grid-cols-[minmax(0,40%)_minmax(0,1fr)] gap-3 border-b border-border/60 py-2">
+                  <dt className="break-words text-muted-foreground">{k}</dt>
+                  <dd className="break-words font-medium">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -237,16 +237,16 @@ export function ProductDetailClient({
 
       {/* Sticky mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white p-3 md:hidden">
-        <div className="flex gap-2">
+        <div className="mx-auto flex w-full min-w-0 max-w-6xl gap-2">
           <Button
-            className="flex-1"
+            className="min-w-0 flex-1 overflow-hidden px-3"
             disabled={product.stockStatus === "out_of_stock"}
             onClick={() => {
               addItem(product.id, qty);
               toast.success("Added to cart");
             }}
           >
-            Add to cart · {formatPKR(price)}
+            <span className="truncate">Add · {formatPKR(price)}</span>
           </Button>
           <Button
             variant="outline"
@@ -262,11 +262,11 @@ export function ProductDetailClient({
 
       {related.length ? (
         <section className="border-t border-border bg-white py-12">
-          <div className="mx-auto max-w-6xl px-4 md:px-8">
+          <div className="mx-auto w-full min-w-0 max-w-6xl px-4 md:px-8">
             <h2 className="mb-6 font-heading text-2xl font-semibold">
               Related products
             </h2>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+            <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
               {related.map((p) => (
                 <CommerceProductCard key={p.id} product={p} />
               ))}

@@ -82,7 +82,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
         <Container className="relative">
           <div className="flex h-14 min-w-0 items-center justify-between gap-2 sm:h-[68px] sm:gap-4">
             <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
-              <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)]">
+              <span className="relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-[inset_0_0_0_1px_rgba(11,18,32,0.08)] sm:h-10 sm:w-10">
                 <Image
                   src={mediaUrl("/brand/logo-mark-v2.webp")}
                   alt="Hania Electronics"
@@ -133,10 +133,10 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
               ))}
             </nav>
 
-            <div className="flex shrink-0 items-center gap-0.5 sm:gap-1.5">
+            <div className="flex shrink-0 items-center">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/80 hover:bg-black/6"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/80 hover:bg-black/6 sm:h-10 sm:w-10"
                 aria-label="Search"
               >
                 <Search className="h-4 w-4" />
@@ -152,7 +152,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
 
               <Link
                 href="/wishlist"
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/6"
+                className="relative inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-black/6 sm:h-10 sm:w-10"
                 aria-label="Wishlist"
               >
                 <Heart className="h-4 w-4" />
@@ -166,7 +166,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
               <button
                 type="button"
                 onClick={() => setCartOpen(true)}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-black/6"
+                className="relative inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-black/6 sm:h-10 sm:w-10"
                 aria-label="Cart"
               >
                 <ShoppingCart className="h-4 w-4" />
@@ -209,7 +209,7 @@ export function Header({ categories = [] }: { categories?: Category[] }) {
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger asChild>
                   <button
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/8 text-foreground lg:hidden"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/8 text-foreground lg:hidden sm:h-10 sm:w-10"
                     aria-label="Menu"
                   >
                     <Menu className="h-4 w-4" />

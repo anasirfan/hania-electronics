@@ -77,18 +77,18 @@ export function Footer() {
                 {settings.storeName.replace(/ELECTRONICS/i, "Electronics")}
               </span>
             </Link>
-            <p className="mt-4 max-w-sm text-sm text-white/65">
+            <p className="mt-4 max-w-full break-words text-sm text-white/65">
               {settings.supportLine ||
                 "Premium products for Pakistani homes and businesses, with cash on delivery."}
             </p>
             <div className="mt-5 space-y-2 text-sm text-white/70">
-              <p className="flex items-start gap-2">
+              <p className="flex min-w-0 items-start gap-2 break-words">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
                 {settings.address}
               </p>
               {settings.email ? (
                 <a
-                  className="flex items-center gap-2 hover:text-white"
+                  className="flex min-w-0 items-center gap-2 break-all hover:text-white"
                   href={`mailto:${settings.email}`}
                 >
                   {settings.email}

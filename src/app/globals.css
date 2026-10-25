@@ -102,17 +102,34 @@
     pointer-events: none;
   }
 
-  html,
-  body {
-    max-width: 100%;
-    overflow-x: clip;
+  html {
+    width: 100%;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    width: 100%;
+    min-width: 0;
     font-family: var(--font-jakarta), system-ui, sans-serif;
     background-image: var(--body-bg-image);
     background-attachment: scroll;
+  }
+
+  main {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  main img,
+  main video {
+    max-width: 100%;
+  }
+
+  /* Grid tracks must be allowed to shrink below their content,
+     otherwise a long title or button widens the whole page. */
+  main .grid > * {
+    min-width: 0;
   }
 
   h1,
